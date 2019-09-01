@@ -1,0 +1,32 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch localhost",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "url": "http://localhost:4200",
+            "webRoot": "${workspaceFolder}"
+        }
+    ]
+}
+
+
+// {
+//     "name": "Launch firefox",
+//     "type": "firefox",
+//     "request": "launch",
+//     "url": "http://localhost:4200",
+//     "webRoot": "${workspaceRoot}",
+//     "log": {
+//         "consoleLevel": {
+//             "PathConversion": "Debug",
+//             "default": "Error"
+//         }
+//     },
+//     "pathMappings": [
+//         { "url": "webpack:///", "path": "/" },
+//     ],
+//     "sourceMaps":"client"
+// },

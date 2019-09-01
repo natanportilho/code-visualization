@@ -1,0 +1,17 @@
+<div>
+  <div class="form-group">
+    <label for="inputArray">Buble Sort</label>
+    <input id="inputArray" type="text" class="form-control" placeholder="Add array numbers using comma separated">
+  </div>
+  <button (click)="createArray()" class="btn btn-primary">Create Array</button>
+</div>
+<br>
+
+<div class="sorting-array-form">
+  <div *ngFor="let node of nodes" class="node {{node.selected}}" id="{{node.id}}">
+      <div class="content">{{node.value}}</div>
+  </div>
+</div>
+
+<div *ngIf="nodes.length > 0"><button (click)="callBubbleSort(nodes)" class="btn btn-primary">Bubble Sort</button></div>
+

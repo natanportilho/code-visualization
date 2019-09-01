@@ -1,0 +1,16 @@
+.node {
+    display: inline-block;
+    border: solid skyblue 1px;
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+  }
+
+  .node .content{
+    text-align: center;
+    vertical-align: middle;
+    line-height: 70px; 
+  }
+
+
+  
