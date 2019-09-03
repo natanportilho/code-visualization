@@ -44,7 +44,7 @@ export class SortingFormComponent implements OnInit {
     this.selectNode(array[j]);
     setTimeout(() => {
       if (i < array.length - 1 && j < array.length - 1) {
-        if (array[j].value > array[j + 1].value) {
+        if (Number(array[j].value) > Number(array[j + 1].value)) {
           this.swap(array, j, j + 1);
         }
       }
@@ -53,10 +53,11 @@ export class SortingFormComponent implements OnInit {
       } else if (i < array.length) {
         this.bubbleSort(array, i + 1, 0);
       }
-    }, 500);
+    }, 400);
   }
 
   swap(array, i, j) {
+    console.log('swapping ' + array[i].value + ' > ' + array[j].value);
     var temp = array[i];
     array[i] = array[j];
     array[j] = temp;
@@ -65,5 +66,4 @@ export class SortingFormComponent implements OnInit {
   selectNode(node) {
     node.selected = "selected";
   }
-
 }
