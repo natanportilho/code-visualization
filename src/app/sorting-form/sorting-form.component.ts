@@ -19,7 +19,7 @@ export class SortingFormComponent implements OnInit {
 
   callBubbleSort(nodes) {
     const array = nodes;
-    nodes = this.bubbleSortDraw(array, 0, 0);
+    nodes = this.bubbleSort(array, 0, 0);
   }
 
   createArray() {
@@ -37,62 +37,33 @@ export class SortingFormComponent implements OnInit {
     }
   }
 
-  bubbleSortRecursion(array) {
-    var swaps = false;
-
-    for (var i = 0; i < array.length - 1; i++) {
-      if (array[i].value > array[i + 1].value) {
-        this.swap(array, i, i + 1);
-        swaps = true;
-      }
+  bubbleSort(array, i, j) {
+    if (i == array.length) {
+      return;
     }
-
-    if (swaps) return this.bubbleSort(array);
-    return array;
-  }
-
-  selectNodes(node) {
-    node.selected = "selected;";
-  }
-
-  deselectAll(){
-    var lights = document.getElementsByClassName("selected");
-    while (lights.length)
-      lights[0].className = lights[0].className.replace(/\bselected\b/g, "");
-  }
-
-  swap(array, i, j) {
-      var temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
-  }
-
-  bubbleSort(array) {
-    for (var i = 0; i < array.length - 1; i++) {
-      for (var j = 0; j < array.length - 1; j++) {
+    this.selectNode(array[j]);
+    setTimeout(() => {
+      if (i < array.length - 1 && j < array.length - 1) {
         if (array[j].value > array[j + 1].value) {
           this.swap(array, j, j + 1);
         }
       }
-    }
+      if ((j + 1) < array.length - 1) {
+        this.bubbleSort(array, i, j + 1);
+      } else if (i < array.length) {
+        this.bubbleSort(array, i + 1, 0);
+      }
+    }, 500);
   }
 
-  bubbleSortDraw(array, i, j) {
-    console.log('j is' + j + ' and j value is ' + array[j].value );
-
-    array[j].selected = "selected";
-      setTimeout(() => {
-        if (i < array.length - 1 && j < array.length - 1) {
-          if (array[j].value > array[j + 1].value) {
-            this.swap(array, j, j + 1);
-          }
-        }
-        if ((j + 1) == array.length - 1 && i < array.length - 1) {
-          this.bubbleSortDraw(array, i + 1, 0);
-        } else {
-          this.bubbleSortDraw(array, j, j + 1);
-        }
-      }, 500);
+  swap(array, i, j) {
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
   }
+
+  selectNode(node) {
+    node.selected = "selected";
+  }
+
 }
-
