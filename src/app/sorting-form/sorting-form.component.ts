@@ -19,7 +19,7 @@ export class SortingFormComponent implements OnInit {
 
   callBubbleSort(nodes) {
     const array = nodes;
-    nodes = this.bubbleSort(array, 0, 0);
+    nodes = this.bubbleSort(array, array.length - 1, 0, 0);
   }
 
   createArray() {
@@ -37,21 +37,24 @@ export class SortingFormComponent implements OnInit {
     }
   }
 
-  bubbleSort(array, i, j) {
+  bubbleSort(array, end, i, j) {
     if (i == array.length) {
       return;
     }
     this.selectNode(array[j]);
     setTimeout(() => {
-      if (i < array.length - 1 && j < array.length - 1) {
+      if (i < array.length - 1 && j < end) {
         if (Number(array[j].value) > Number(array[j + 1].value)) {
           this.swap(array, j, j + 1);
+          if (j + 1 == end) {
+            end = end - 1;
+          }
         }
       }
-      if ((j + 1) < array.length - 1) {
-        this.bubbleSort(array, i, j + 1);
+      if ((j + 1) < end) {
+        this.bubbleSort(array, end, i, j + 1);
       } else if (i < array.length) {
-        this.bubbleSort(array, i + 1, 0);
+        this.bubbleSort(array, end, i + 1, 0);
       }
     }, 400);
   }
