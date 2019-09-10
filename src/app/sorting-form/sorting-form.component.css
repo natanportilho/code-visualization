@@ -11,6 +11,11 @@
     background-color: lightcyan;
   }
 
+  .node.final-position {
+    border: solid rgb(217, 255, 0) 3px;
+    background-color: rgb(224, 255, 243);
+  }
+
   .node .content{
     text-align: center;
     vertical-align: middle;
