@@ -7,8 +7,13 @@
   }
 
   .node.selected {
-    border: solid gold 3px;
-    background-color: lightcyan;
+    border: solid rgb(91, 196, 223) 3px;
+    background-color: rgb(222, 229, 231);
+  }
+
+  .node.selected-for-comparison{
+        border: solid rgb(87, 79, 34) 3px;
+    background-color: rgb(223, 60, 100);
   }
 
   .node.final-position {
