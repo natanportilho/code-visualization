@@ -41,14 +41,22 @@ export class SortingFormComponent implements OnInit {
     if (i == array.length) {
       return;
     }
+
     this.selectNode(array[j], "selected");
+
+    setTimeout(() => {
+      if (Number(array[j].value) > Number(array[j + 1].value)) {
+        this.selectNode(array[j + 1], "selected-for-comparison");
+      }
+    }, 500);
+
     setTimeout(() => {
       if (i < array.length - 1 && j < end) {
         if (Number(array[j].value) > Number(array[j + 1].value)) {
           this.swap(array, j, j + 1);
         }
         array[j].selected = "";
-        array[j+1].selected = "";
+        array[j + 1].selected = "";
 
         if (j + 1 == end) {
           console.log('j = ' + (j + 1) + ' end = ' + end);
@@ -65,7 +73,7 @@ export class SortingFormComponent implements OnInit {
       } else if (i < array.length) {
         this.bubbleSort(array, end, i + 1, 0);
       }
-    }, 800);
+    }, 2000);
   }
 
   swap(array, i, j) {
