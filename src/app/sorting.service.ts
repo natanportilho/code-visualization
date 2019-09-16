@@ -2,60 +2,56 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SortingService {
-    quickSort(array) {
-        if (array.length <= 1) {
-            return array;
+
+  bubbleSort(array, end, i, j) {
+    if (i == array.length) {
+      return;
+    }
+
+    this.selectNode(array[j], "selected");
+
+    setTimeout(() => {
+      if (Number(array[j].value) > Number(array[j + 1].value)) {
+        this.selectNode(array[j + 1], "selected-for-comparison");
+      }
+    }, 500);
+
+    setTimeout(() => {
+      if (i < array.length - 1 && j < end) {
+        if (Number(array[j].value) > Number(array[j + 1].value)) {
+          this.swap(array, j, j + 1);
         }
-        var leftPointer = 0;
-        var rightPointer = array.length - 1;
-        var half = Math.round((array.length - 1) / 2);
-        var pivot = array[half];
+        array[j].selected = "";
+        array[j + 1].selected = "";
 
-        while (leftPointer < rightPointer) {
-            while (array[leftPointer] < pivot) {
-                leftPointer++;
-            }
-            while (array[rightPointer] > pivot) {
-                rightPointer--;
-            }
-            if (array[leftPointer] != array[rightPointer]) {
-                array = this.swipe(array, leftPointer, rightPointer);
-            }
+        if (j + 1 == end) {
+          console.log('j = ' + (j + 1) + ' end = ' + end);
+          this.selectNode(array[j + 1], "final-position");
+          end--;
 
+          if (end <= 1) {
+            this.selectNode(array[0], "final-position");
+          }
         }
-        var leftHalf = array.slice(0, leftPointer);
-        var rightHalf = array.slice(rightPointer, array.length);
+      }
+      if ((j + 1) < end) {
+        this.bubbleSort(array, end, i, j + 1);
+      } else if (i < array.length) {
+        this.bubbleSort(array, end, i + 1, 0);
+      }
+    }, 2000);
+  }
 
-        return this.quickSort(leftHalf).concat(this.quickSort(rightHalf));
+  swap(array, i, j) {
+    console.log('swapping ' + array[i].value + ' > ' + array[j].value);
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+
+  selectNode(node, cssClass) {
+    if (node.selected !== "final-position") {
+      node.selected = cssClass;
     }
-
-    swipe(array, leftpointer, rightPointer) {
-        var leftvalue = array[leftpointer];
-        var rightValue = array[rightPointer]
-        array[leftpointer] = rightValue;
-        array[rightPointer] = leftvalue;
-        return array;
-    }
-
-    bubbleSort(array) {
-        var swaps = false;
-    
-        for (var i = 0; i < array.length - 1; i++) {
-            if (array[i].value > array[i + 1].value) {
-                array = this.swap(array, i, i + 1);
-                swaps = true;
-            }
-        }
-    
-        if (swaps) return this.bubbleSort(array);
-        return array;
-    }
-
-    swap(array, i, j) {
-        var temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
-        return array;
-    }
-
+  }
 }
