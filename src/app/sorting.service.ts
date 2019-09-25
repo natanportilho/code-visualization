@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { merge } from 'rxjs';
 
 @Injectable()
 export class SortingService {
@@ -52,6 +53,53 @@ export class SortingService {
   selectNode(node, cssClass) {
     if (node.selected !== "final-position") {
       node.selected = cssClass;
+    }
+  }
+
+  mergeSort(array, leftIndex, rightIndex) {
+    if (leftIndex < rightIndex) {
+      let half = Math.floor(array.length / 2)
+      let leftHalf = array.slice(0, half);
+      let rightHalf = array.slice(half, array.length);
+      leftHalf = this.mergeSort(leftHalf, 0, leftHalf.length - 1)
+      rightHalf = this.mergeSort(rightHalf, 0, rightHalf.length - 1);
+      array = this.merge(leftHalf, rightHalf);
+    }
+    return array;
+  }
+
+  merge(lefthalf, rightHalf){
+    let i =  0;
+    let j = 0;
+
+    var newArray = [];
+
+    while (i < lefthalf.length && j < rightHalf.length){
+      if (Number(lefthalf[i].value) <= Number(rightHalf[j].value)){
+        newArray.push(lefthalf[i]);
+        i++;
+      }else{
+        newArray.push(rightHalf[j]);
+        j++;
+      }
+    }
+
+    while(i < lefthalf.length){
+      newArray.push(lefthalf[i]);
+      i++;
+    }
+
+    while(j < rightHalf.length){
+      newArray.push(rightHalf[j]);
+      j++;
+    }
+    this.printArray(newArray);
+    return newArray;
+  }
+
+  printArray(array){
+    for (let i = 0; i < array.length; i++){
+      console.log(array[i].value);
     }
   }
 }

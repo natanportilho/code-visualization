@@ -1,5 +1,6 @@
 import { Component, OnInit, ɵEMPTY_ARRAY } from '@angular/core';
 import { SortingService } from '../sorting.service';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'sorting-form',
@@ -19,7 +20,12 @@ export class SortingFormComponent implements OnInit {
 
   callBubbleSort(nodes) {
     const array = nodes;
-    this.sortingService.bubbleSort(array, array.length - 1, 0, 0);
+    let algorithm = (<HTMLInputElement>document.getElementById("algorithm-selection")).value;
+    if (algorithm == "Bubble Sort") {
+      this.sortingService.bubbleSort(array, array.length - 1, 0, 0);
+    } else if (algorithm == "Merge Sort") {
+      this.sortingService.mergeSort(array, 0, array.length - 1);
+    }
   }
 
   createArray() {

@@ -3,8 +3,17 @@
     <label for="inputArray">Buble Sort</label>
     <input id="inputArray" type="text" class="form-control" placeholder="Add array numbers using comma separated">
   </div>
-  <button (click)="createArray()" class="btn btn-primary">Create Array</button>
 
+  <div class="form-group" id="form-group-algorithm-selection">
+    <label for="sel1">Select list:</label>
+    <select class="form-control" id="algorithm-selection">
+      <option>Bubble Sort</option>
+      <option>Merge Sort</option>
+    </select>
+  </div>
+
+  <br>
+  <button (click)="createArray()" class="btn btn-primary">Create Array</button>
   <br>
   <br>
 
