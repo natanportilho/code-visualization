@@ -102,4 +102,30 @@ export class SortingService {
       console.log(array[i].value);
     }
   }
+
+  quickSort(array){
+    let i = 0;
+    let j = array.length - 1;
+    var pivot =  {
+      id: i,
+      value: array[0].value,
+      colour: 'rgb(135, 206, 235)',
+      selected: ""
+    };
+
+    let oldPivotPosition = 0;
+
+    array[0].value = "x";
+    while (i != j){
+      console.log(pivot);
+      if (Number(array[j].value) < Number(pivot.value)){
+        array[oldPivotPosition].value = array[j].value;
+        array[j].value = "x";
+      }
+      
+    }
+
+
+
+  }
 }
