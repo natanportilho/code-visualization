@@ -2,6 +2,8 @@
 
 A simple way for vizualizing the steps performed by sorting algorithms.
 
+![Bubble Sort](https://github.com/natanportilho/code-visualization/blob/master/src/assets/images/Bubble%20Sort.png)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.2.1.
 
