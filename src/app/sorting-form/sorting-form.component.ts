@@ -32,14 +32,18 @@ export class SortingFormComponent implements OnInit {
     this.nodes = [];
     var array = (<HTMLInputElement>document.getElementById("inputArray")).value.split(",");
 
-    for (var i = 0; i < array.length; i++) {
-      var node = {
-        id: i,
-        value: array[i],
-        colour: 'rgb(135, 206, 235)',
-        selected: ""
-      };
-      this.nodes.push(node);
+    if (array.length <= 1) {
+      window.alert('Please create an array with at least two numbers :)');
+    } else {
+      for (var i = 0; i < array.length; i++) {
+        var node = {
+          id: i,
+          value: array[i],
+          colour: 'rgb(135, 206, 235)',
+          selected: ""
+        };
+        this.nodes.push(node);
+      }
     }
   }
 }
