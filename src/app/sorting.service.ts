@@ -68,28 +68,28 @@ export class SortingService {
     return array;
   }
 
-  merge(lefthalf, rightHalf){
-    let i =  0;
+  merge(lefthalf, rightHalf) {
+    let i = 0;
     let j = 0;
 
     var newArray = [];
 
-    while (i < lefthalf.length && j < rightHalf.length){
-      if (Number(lefthalf[i].value) <= Number(rightHalf[j].value)){
+    while (i < lefthalf.length && j < rightHalf.length) {
+      if (Number(lefthalf[i].value) <= Number(rightHalf[j].value)) {
         newArray.push(lefthalf[i]);
         i++;
-      }else{
+      } else {
         newArray.push(rightHalf[j]);
         j++;
       }
     }
 
-    while(i < lefthalf.length){
+    while (i < lefthalf.length) {
       newArray.push(lefthalf[i]);
       i++;
     }
 
-    while(j < rightHalf.length){
+    while (j < rightHalf.length) {
       newArray.push(rightHalf[j]);
       j++;
     }
@@ -97,16 +97,16 @@ export class SortingService {
     return newArray;
   }
 
-  printArray(array){
-    for (let i = 0; i < array.length; i++){
+  printArray(array) {
+    for (let i = 0; i < array.length; i++) {
       console.log(array[i].value);
     }
   }
 
-  quickSort(array){
+  quickSort(array) {
     let i = 0;
     let j = array.length - 1;
-    var pivot =  {
+    var pivot = {
       id: i,
       value: array[0].value,
       colour: 'rgb(135, 206, 235)',
@@ -116,16 +116,12 @@ export class SortingService {
     let oldPivotPosition = 0;
 
     array[0].value = "x";
-    while (i != j){
-      console.log(pivot);
-      if (Number(array[j].value) < Number(pivot.value)){
-        array[oldPivotPosition].value = array[j].value;
-        array[j].value = "x";
-      }
-      
-    }
-
-
-
+    // while (i != j) {
+    //   console.log(pivot);
+    //   if (Number(array[j].value) < Number(pivot.value)) {
+    //     array[oldPivotPosition].value = array[j].value;
+    //     array[j].value = "x";
+    //   }
+    // }
   }
 }

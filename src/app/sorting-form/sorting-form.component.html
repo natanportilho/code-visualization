@@ -8,7 +8,7 @@
     <label for="sel1">Select list:</label>
     <select class="form-control" id="algorithm-selection">
       <option>Bubble Sort</option>
-      <option>Merge Sort</option>
+      <option>Quick Sort</option>
     </select>
   </div>
 
@@ -24,7 +24,7 @@
   </div>
 
   <div *ngIf="nodes.length > 0">
-    <button (click)="callBubbleSort(nodes)" class="btn btn-primary">Sort</button>
+    <button (click)="callBubbleSort(nodes)" class="btn btn-primary" id="sort-button">Sort</button>
   </div>
 
 <!-- </div> -->

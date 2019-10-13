@@ -23,8 +23,8 @@ export class SortingFormComponent implements OnInit {
     let algorithm = (<HTMLInputElement>document.getElementById("algorithm-selection")).value;
     if (algorithm == "Bubble Sort") {
       this.sortingService.bubbleSort(array, array.length - 1, 0, 0);
-    } else if (algorithm == "Merge Sort") {
-      this.sortingService.mergeSort(array, 0, array.length - 1);
+    } else if (algorithm == "Quick Sort") {
+      this.sortingService.quickSort(array);
     }
   }
 
