@@ -12,6 +12,12 @@
     border-style: bold;
     background-color: rgb(222, 229, 231);
   }
+  .node.selected-red {
+    border: solid red 3px;
+    border-style: bold;
+    background-color: rgb(222, 229, 231);
+  }
+
 
   .node.selected-for-comparison{
     border: solid #4eb980 3px;
@@ -44,4 +50,18 @@
 
 #sort-button{
   margin-bottom: 2%;
+}
+
+#pivot {
+  line-height: 70px;
+  text-align: center;
+  border-color: #594c59;
+}
+
+.label-name{
+  margin-left: 2%;
+}
+
+div{
+  vertical-align: middle;
 }

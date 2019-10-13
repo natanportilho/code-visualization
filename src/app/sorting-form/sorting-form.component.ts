@@ -10,9 +10,10 @@ import { $ } from 'protractor';
 })
 export class SortingFormComponent implements OnInit {
   nodes = [];
+  pivot: any;
 
   constructor(private sortingService: SortingService) {
-
+    this.pivot = sortingService.pivot;
   }
 
   ngOnInit() {

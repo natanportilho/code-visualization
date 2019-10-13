@@ -3,6 +3,12 @@ import { merge } from 'rxjs';
 
 @Injectable()
 export class SortingService {
+  pivot = {
+    id: 0,
+    value: 'x',
+    colour: 'rgb(135, 206, 235)',
+    selected: ""
+  };
 
   bubbleSort(array, end, i, j) {
     if (i == array.length) {
@@ -106,22 +112,37 @@ export class SortingService {
   quickSort(array) {
     let i = 0;
     let j = array.length - 1;
-    var pivot = {
-      id: i,
-      value: array[0].value,
-      colour: 'rgb(135, 206, 235)',
-      selected: ""
-    };
+    let emptySpot = 0;
 
-    let oldPivotPosition = 0;
+    this.selectNode(array[i], "selected");
+    this.selectNode(this.pivot, "selected");
+    this.pivot.value = array[0].value;
 
-    array[0].value = "x";
-    // while (i != j) {
-    //   console.log(pivot);
-    //   if (Number(array[j].value) < Number(pivot.value)) {
-    //     array[oldPivotPosition].value = array[j].value;
-    //     array[j].value = "x";
-    //   }
-    // }
+    setTimeout(() => {
+      array[emptySpot].value = "";
+      this.selectNode(array[emptySpot], "selected-red");
+      setTimeout(() => {
+        this.selectNode(array[j], "selected");
+        setTimeout(() => {
+          while (Number(array[j].value) >= Number(this.pivot.value) || i != j){
+            j--;
+          }
+          if (Number(array[j].value) < Number(this.pivot.value)) {
+            array[emptySpot].value = array[j].value;
+            this.selectNode(array[emptySpot], "");
+            array[j].value = "";
+            emptySpot = j;
+          }
+          // else if (i == j){
+          //   array[emptySpot].value = this.pivot.value;
+          // }
+        }, 1000);
+      }, 1000);
+
+    }, 1000);
+
+
+
   }
+
 }

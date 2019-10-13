@@ -1,30 +1,32 @@
-<!-- <div class="col-sm-8"> -->
-  <div class="form-group">
-    <label for="inputArray">Array</label>
-    <input id="inputArray" type="text" class="form-control" placeholder="Add array numbers using comma separated">
+<div class="form-group">
+  <label for="inputArray">Array</label>
+  <input id="inputArray" type="text" class="form-control" placeholder="Add array numbers using comma separated">
+</div>
+
+<div class="form-group" id="form-group-algorithm-selection">
+  <label for="sel1">Select list:</label>
+  <select class="form-control" id="algorithm-selection">
+    <option>Bubble Sort</option>
+    <option>Quick Sort</option>
+  </select>
+</div>
+
+<br>
+<div>
+  <div>
+    <button (click)="createArray()" class="btn btn-primary">Create Array</button>
+      <label class="label-name">Pivot:</label><div id="pivot"class="node {{pivot.selected}}">{{pivot.value}}</div>
   </div>
+</div>
 
-  <div class="form-group" id="form-group-algorithm-selection">
-    <label for="sel1">Select list:</label>
-    <select class="form-control" id="algorithm-selection">
-      <option>Bubble Sort</option>
-      <option>Quick Sort</option>
-    </select>
+<br>
+
+<div class="sorting-array-form">
+  <div *ngFor="let node of nodes" class="node {{node.selected}}" id="{{node.id}}">
+    <div class="content">{{node.value}}</div>
   </div>
+</div>
 
-  <br>
-  <button (click)="createArray()" class="btn btn-primary">Create Array</button>
-  <br>
-  <br>
-
-  <div class="sorting-array-form">
-    <div *ngFor="let node of nodes" class="node {{node.selected}}" id="{{node.id}}">
-      <div class="content">{{node.value}}</div>
-    </div>
-  </div>
-
-  <div *ngIf="nodes.length > 0">
-    <button (click)="callBubbleSort(nodes)" class="btn btn-primary" id="sort-button">Sort</button>
-  </div>
-
-<!-- </div> -->
+<div *ngIf="nodes.length > 0">
+  <button (click)="callBubbleSort(nodes)" class="btn btn-primary" id="sort-button">Sort</button>
+</div>
