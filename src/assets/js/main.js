@@ -26,4 +26,11 @@
 			}, 100);
 		});
 
+
+
+	var myApp = angular.module('AppModule', []);
+	myApp.controller('MainController', ['$scope', function($scope) {
+  	$scope.testing = 'lol';
+}]);
+
 })(jQuery);

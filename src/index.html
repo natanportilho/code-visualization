@@ -7,6 +7,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 </head>
 
 <body class="is-preload">
@@ -18,6 +19,11 @@
 
 	<!-- Main -->
 	<div id="main">
+		<div ng-app="AppModule">
+			<div ng-controller="MainController">
+				{{testing}}
+			</div>
+		</div>
 		<app-root></app-root>
 	</div>
 
