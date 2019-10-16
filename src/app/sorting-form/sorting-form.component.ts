@@ -49,17 +49,17 @@ export class SortingFormComponent implements OnInit {
   }
 
   algorithmSelection(algorithm){
-    var algorithmSelection = (<HTMLInputElement>document.getElementById("algorithm-selection"));
-    var algorithm = algorithmSelection.options[algorithmSelection.selectedIndex].value;
-    var label = (<HTMLInputElement>document.getElementsByClassName("pivot-element")[0]);
-    var pivot = (<HTMLInputElement>document.getElementsByClassName("pivot-element")[1]);
+    // var algorithmSelection = (<HTMLInputElement>document.getElementById("algorithm-selection"));
+    // var algorithm = algorithmSelection.options[algorithmSelection.selectedIndex].value;
+    // var label = (<HTMLInputElement>document.getElementsByClassName("pivot-element")[0]);
+    // var pivot = (<HTMLInputElement>document.getElementsByClassName("pivot-element")[1]);
 
-    if (algorithm == 'Quick Sort'){
-      label.style.visibility = 'visible';
-      pivot.style.visibility = 'visible';
-    }else{
-      label.style.visibility = 'hidden';
-      pivot.style.visibility = 'hidden';
-    }
+    // if (algorithm == 'Quick Sort'){
+    //   label.style.visibility = 'visible';
+    //   pivot.style.visibility = 'visible';
+    // }else{
+    //   label.style.visibility = 'hidden';
+    //   pivot.style.visibility = 'hidden';
+    // }
   }
 }

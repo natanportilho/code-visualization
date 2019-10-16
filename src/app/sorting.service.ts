@@ -119,12 +119,14 @@ export class SortingService {
     this.pivot.value = array[0].value;
 
     setTimeout(() => {
+      // come from right 
+
       array[emptySpot].value = "";
       this.selectNode(array[emptySpot], "selected-red");
       setTimeout(() => {
         this.selectNode(array[j], "selected");
         setTimeout(() => {
-          while (Number(array[j].value) >= Number(this.pivot.value) || i != j){
+          while (Number(array[j].value) >= Number(this.pivot.value) && i != j){
             j--;
           }
           if (Number(array[j].value) < Number(this.pivot.value)) {
@@ -133,9 +135,31 @@ export class SortingService {
             array[j].value = "";
             emptySpot = j;
           }
-          // else if (i == j){
-          //   array[emptySpot].value = this.pivot.value;
-          // }
+          else if (i == j){
+            array[emptySpot].value = this.pivot.value;
+          }
+
+        /// come from left now
+
+        setTimeout(() => {
+          while (Number(array[i+1].value) <= Number(this.pivot.value) && i+1 != j){
+            i++;
+          }
+
+          if (Number(array[i+1].value) > Number(this.pivot.value)) {
+            array[emptySpot].value = array[i+1].value;
+            this.selectNode(array[emptySpot], "");
+            array[i+1].value = "";
+            emptySpot = i+1;
+          }else if (i+1 == j){
+            array[emptySpot].value = this.pivot.value;
+          }
+
+        }, 1000);
+
+        // now should find a way to call ir recursively
+
+
         }, 1000);
       }, 1000);
 
