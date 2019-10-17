@@ -11,6 +11,16 @@ import { $ } from 'protractor';
 export class SortingFormComponent implements OnInit {
   nodes = [];
   pivot: any;
+  isPivotVisible: boolean = false;
+
+
+  data = {
+    model: null,
+    availableOptions: [
+      { id: '1', name: 'Bubble Sort' },
+      { id: '2', name: 'Quick Sort' }
+    ]
+  };
 
   constructor(private sortingService: SortingService) {
     this.pivot = sortingService.pivot;
@@ -48,18 +58,13 @@ export class SortingFormComponent implements OnInit {
     }
   }
 
-  algorithmSelection(algorithm){
-    // var algorithmSelection = (<HTMLInputElement>document.getElementById("algorithm-selection"));
-    // var algorithm = algorithmSelection.options[algorithmSelection.selectedIndex].value;
-    // var label = (<HTMLInputElement>document.getElementsByClassName("pivot-element")[0]);
-    // var pivot = (<HTMLInputElement>document.getElementsByClassName("pivot-element")[1]);
-
-    // if (algorithm == 'Quick Sort'){
-    //   label.style.visibility = 'visible';
-    //   pivot.style.visibility = 'visible';
-    // }else{
-    //   label.style.visibility = 'hidden';
-    //   pivot.style.visibility = 'hidden';
-    // }
+  getSelectedAlgorithm(event: Event) {
+    let algorithm = event.target['options']
+    [event.target['options'].selectedIndex].text;
+    if (algorithm == 'Quick Sort') {
+      this.isPivotVisible = true;
+    } else {
+      this.isPivotVisible = false;
+    }
   }
 }

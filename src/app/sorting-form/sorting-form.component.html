@@ -7,15 +7,13 @@
   <div>
     <label>Select list:</label>
 
-    <select class="form-control" id="algorithm-selection" (change)="algorithmSelection()">
-      <option>Bubble Sort</option>
-      <option>Quick Sort</option>
+    <select class="form-control" id="algorithm-selection" ng-model (change)="getSelectedAlgorithm($event)">
+      <option *ngFor="let option of data.availableOptions" value="{{option.id}}"> {{option.name}}</option>
     </select>
-    <br>
 
     <button (click)="createArray()" class="btn btn-primary">Create Array</button>
-    <label class="label-name pivot-element">Pivot:</label>
-    <div id="pivot" class="node {{pivot.selected}} pivot-element">{{pivot.value}}</div>
+    <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name pivot-element">Pivot:</label>
+    <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node {{pivot.selected}} pivot-element">{{pivot.value}}</div>
   </div>
 </div>
 <br>
