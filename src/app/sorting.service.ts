@@ -126,38 +126,13 @@ export class SortingService {
       setTimeout(() => {
         this.selectNode(array[j], "selected");
         setTimeout(() => {
-          while (Number(array[j].value) >= Number(this.pivot.value) && i != j){
-            j--;
-          }
-          if (Number(array[j].value) < Number(this.pivot.value)) {
-            array[emptySpot].value = array[j].value;
-            this.selectNode(array[emptySpot], "");
-            array[j].value = "";
-            emptySpot = j;
-          }
-          else if (i == j){
-            array[emptySpot].value = this.pivot.value;
-          }
 
-        /// come from left now
-
-        setTimeout(() => {
-          while (Number(array[i+1].value) <= Number(this.pivot.value) && i+1 != j){
-            i++;
-          }
-
-          if (Number(array[i+1].value) > Number(this.pivot.value)) {
-            array[emptySpot].value = array[i+1].value;
-            this.selectNode(array[emptySpot], "");
-            array[i+1].value = "";
-            emptySpot = i+1;
-          }else if (i+1 == j){
-            array[emptySpot].value = this.pivot.value;
-          }
-
-        }, 1000);
-
-        // now should find a way to call ir recursively
+          this.quickSortFromRight(array, i, j, emptySpot);
+          /// come from left now
+          setTimeout(() => {
+            this.quickSortFromLeft(array, i, j, emptySpot);
+          }, 1000);
+          // now should find a way to call ir recursively
 
 
         }, 1000);
@@ -167,6 +142,38 @@ export class SortingService {
 
 
 
+  }
+
+
+  quickSortFromLeft(array, i, j, emptySpot) {
+    while (Number(array[i + 1].value) <= Number(this.pivot.value) && i + 1 != j) {
+      i++;
+    }
+
+    if (Number(array[i + 1].value) > Number(this.pivot.value)) {
+      array[emptySpot].value = array[i + 1].value;
+      this.selectNode(array[emptySpot], "");
+      array[i + 1].value = "";
+      emptySpot = i + 1;
+    } else if (i + 1 == j) {
+      array[emptySpot].value = this.pivot.value;
+    }
+  }
+
+
+  quickSortFromRight(array, i, j, emptySpot) {
+    while (Number(array[j].value) >= Number(this.pivot.value) && i != j) {
+      j--;
+    }
+    if (Number(array[j].value) < Number(this.pivot.value)) {
+      array[emptySpot].value = array[j].value;
+      this.selectNode(array[emptySpot], "");
+      array[j].value = "";
+      emptySpot = j;
+    }
+    else if (i == j) {
+      array[emptySpot].value = this.pivot.value;
+    }
   }
 
 }
