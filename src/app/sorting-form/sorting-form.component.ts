@@ -32,9 +32,9 @@ export class SortingFormComponent implements OnInit {
   callBubbleSort(nodes) {
     const array = nodes;
     let algorithm = (<HTMLInputElement>document.getElementById("algorithm-selection")).value;
-    if (algorithm == "Bubble Sort") {
+    if (algorithm == "1") {
       this.sortingService.bubbleSort(array, array.length - 1, 0, 0);
-    } else if (algorithm == "Quick Sort") {
+    } else if (algorithm == "2") {
       this.sortingService.quickSort(array);
     }
   }
