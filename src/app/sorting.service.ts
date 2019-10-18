@@ -109,9 +109,9 @@ export class SortingService {
     }
   }
 
-  quickSort(array) {
+  quickSort(array, j) {
     let i = 0;
-    let j = array.length - 1;
+    let lastIndex = j;
     let emptySpot = 0;
 
     this.selectNode(array[i], "selected");
@@ -125,10 +125,12 @@ export class SortingService {
       this.selectNode(array[emptySpot], "selected-red");
       setTimeout(() => {
         this.selectNode(array[j], "selected");
-        setTimeout(() => {
 
+        setTimeout(() => {
           this.quickSortFromRight(array, i, j, emptySpot);
           /// come from left now
+
+
           setTimeout(() => {
             this.quickSortFromLeft(array, i, j, emptySpot);
           }, 1000);
@@ -138,8 +140,14 @@ export class SortingService {
         }, 1000);
       }, 1000);
 
-    }, 1000);
+    //   setTimeout(() =>{
 
+    // if (lastIndex - 1 > 0){
+    //   this.quickSort(array, lastIndex - 1);
+    // }
+    //   }, 1000);
+    
+    }, 1000);
 
 
   }
@@ -155,8 +163,10 @@ export class SortingService {
       this.selectNode(array[emptySpot], "");
       array[i + 1].value = "";
       emptySpot = i + 1;
+      this.quickSortFromRight(array, i, j, emptySpot);
     } else if (i + 1 == j) {
       array[emptySpot].value = this.pivot.value;
+      this.pivot.value = "";
     }
   }
 
@@ -170,9 +180,11 @@ export class SortingService {
       this.selectNode(array[emptySpot], "");
       array[j].value = "";
       emptySpot = j;
+      this.quickSortFromLeft(array, i, j, emptySpot);
     }
     else if (i == j) {
       array[emptySpot].value = this.pivot.value;
+      this.pivot.value = "";
     }
   }
 
