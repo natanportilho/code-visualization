@@ -21,9 +21,13 @@
 <div class="sorting-array-form">
   <div *ngFor="let node of nodes" class="node {{node.selected}}" id="{{node.id}}">
     <div class="content">{{node.value}}</div>
-    <p id="{{node.id}}" class="{{node.arrow}}"><i class="arrow up"></i></p>
+    <p class="{{node.arrow}}">
+      <i class="arrow up"></i>
+    </p>
   </div>
 </div>
+
+<br>
 
 <div *ngIf="nodes.length > 0">
   <button (click)="callBubbleSort(nodes)" class="btn btn-primary" id="sort-button">Sort</button>

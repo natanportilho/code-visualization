@@ -118,10 +118,13 @@ export class SortingService {
     this.selectNode(this.pivot, "selected");
     this.pivot.value = array[0].value;
 
+    array[i].arrow = "show-arrow";
+    array[j].arrow = "show-arrow";
+
     setTimeout(() => {
       // come from right 
 
-      array[emptySpot].value = "";
+      array[emptySpot].value = ".";
       this.selectNode(array[emptySpot], "selected-red");
       setTimeout(() => {
         this.selectNode(array[j], "selected");
@@ -160,7 +163,7 @@ export class SortingService {
     if (Number(array[i + 1].value) > Number(this.pivot.value)) {
       array[emptySpot].value = array[i + 1].value;
       this.selectNode(array[emptySpot], "");
-      array[i + 1].value = "";
+      array[i + 1].value = ".";
       emptySpot = i + 1;
       // this.quickSortFromRight(array, i, j, emptySpot);
     } else if (this.quickSortFlagsMeet(i + 1, j)) {
@@ -176,7 +179,7 @@ export class SortingService {
     if (Number(array[j].value) < Number(this.pivot.value)) {
       array[emptySpot].value = array[j].value;
       this.selectNode(array[emptySpot], "");
-      array[j].value = "";
+      array[j].value = ".";
       emptySpot = j;
       // this.quickSortFromLeft(array, i, j, emptySpot);
     }
