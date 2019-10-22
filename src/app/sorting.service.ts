@@ -140,15 +140,14 @@ export class SortingService {
         }, 1000);
       }, 1000);
 
-    //   setTimeout(() =>{
+      //   setTimeout(() =>{
 
-    // if (lastIndex - 1 > 0){
-    //   this.quickSort(array, lastIndex - 1);
-    // }
-    //   }, 1000);
-    
+      // if (lastIndex - 1 > 0){
+      //   this.quickSort(array, lastIndex - 1);
+      // }
+      //   }, 1000);
+
     }, 1000);
-
 
   }
 
@@ -163,10 +162,9 @@ export class SortingService {
       this.selectNode(array[emptySpot], "");
       array[i + 1].value = "";
       emptySpot = i + 1;
-      this.quickSortFromRight(array, i, j, emptySpot);
-    } else if (i + 1 == j) {
-      array[emptySpot].value = this.pivot.value;
-      this.pivot.value = "";
+      // this.quickSortFromRight(array, i, j, emptySpot);
+    } else if (this.quickSortFlagsMeet(i + 1, j)) {
+      this.quickSortPlacePivotInFinalPosition(array, emptySpot);
     }
   }
 
@@ -180,12 +178,21 @@ export class SortingService {
       this.selectNode(array[emptySpot], "");
       array[j].value = "";
       emptySpot = j;
-      this.quickSortFromLeft(array, i, j, emptySpot);
+      // this.quickSortFromLeft(array, i, j, emptySpot);
     }
-    else if (i == j) {
-      array[emptySpot].value = this.pivot.value;
-      this.pivot.value = "";
+    else if (this.quickSortFlagsMeet(i, j)) {
+      this.quickSortPlacePivotInFinalPosition(array, emptySpot);
     }
+  }
+
+  quickSortPlacePivotInFinalPosition(array, spot) {
+    array[spot].value = this.pivot.value;
+    this.selectNode(array[spot], "final-position");
+    this.pivot.value = "";
+  }
+
+  quickSortFlagsMeet(i, j) {
+    return i == j && this.pivot.value != "";
   }
 
 }

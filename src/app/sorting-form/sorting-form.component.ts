@@ -13,7 +13,6 @@ export class SortingFormComponent implements OnInit {
   pivot: any;
   isPivotVisible: boolean = false;
 
-
   data = {
     model: null,
     availableOptions: [
@@ -51,7 +50,8 @@ export class SortingFormComponent implements OnInit {
           id: i,
           value: array[i],
           colour: 'rgb(135, 206, 235)',
-          selected: ""
+          selected: "",
+          arrow: "hide-arrow"
         };
         this.nodes.push(node);
       }
