@@ -7,6 +7,31 @@
     margin: 10px;
   }
 
+
+	@media screen and (max-width: 1159px) {
+    .node {
+      width: 55px;
+      height: 55px;
+    }
+    .node .content{
+      line-height: 54px!important;
+    }
+  }
+  
+  @media screen and (max-width: 979px) {
+    .node {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  
+  @media screen and (max-width: 959px) {
+    .node {
+      width: 35px;
+      height: 35px;
+    }
+	}
+
   .node.selected {
     border: solid #4eb980 3px;
     border-style: bold;
