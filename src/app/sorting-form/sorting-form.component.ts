@@ -44,6 +44,8 @@ export class SortingFormComponent implements OnInit {
 
     if (array.length <= 1) {
       window.alert('Please create an array with at least two numbers :)');
+    } else if (array.length > 12){
+      window.alert('Please create an array with less than twelve numbers :)');
     } else {
       for (var i = 0; i < array.length; i++) {
         var node = {
