@@ -1,7 +1,7 @@
-<div class="form-group">
+<!-- <div class="form-group">
   <label for="inputArray">Array</label>
   <input id="inputArray" type="text" class="form-control" placeholder="Add array numbers using comma separated">
-</div>
+</div> -->
 
 <div>
   <div>
@@ -11,7 +11,20 @@
       <option *ngFor="let option of data.availableOptions" value="{{option.id}}"> {{option.name}}</option>
     </select>
 
-    <button (click)="createArray()" class="btn btn-primary">Create Array</button>
+    <!-- <div class="lolzao"></div> -->
+    <div class="array-creation-section">
+      <div class="left-section">
+        <div class="form-group">
+          <label for="inputArray">Array</label>
+          <input id="inputArray" type="text" class="form-control" placeholder="Add array numbers using comma separated">
+        </div>
+      </div>
+      <div class="right-section">
+        <button (click)="createArray()" class="btn btn-primary">Create Array</button>
+      </div>
+    </div>
+
+
     <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name pivot-element">Pivot:</label>
     <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node {{pivot.selected}} pivot-element">{{pivot.value}}</div>
   </div>

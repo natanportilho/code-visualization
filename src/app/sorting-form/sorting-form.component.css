@@ -118,3 +118,24 @@ p{
 .hide-arrow{
   visibility: hidden;
 }
+
+#inputArray {
+  width: 400px;
+}
+
+.right-section {
+  float: right;
+}
+
+.array-creation-section {
+  background-color:chocolate;
+}
+
+.left-section {
+  float: left;
+}
+
+.btn {
+  margin-top: 30px;
+}
+
