@@ -5,3 +5,9 @@
 #sorting-form-section{
     padding: 30px;
 }
+
+#middle-section {
+    z-index: 1;
+    position: relative;
+  }
+  
