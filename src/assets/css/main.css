@@ -2711,7 +2711,7 @@ input, select, textarea {
 		background-repeat: repeat-x,						repeat,					no-repeat;
 		background-size: 3200px 460px,					auto,					cover;
 		color: rgba(255, 255, 255, 0.8);
-		padding: 1em 0 12em 0;
+		padding: 3em 0 12em 0;
 		position: relative;
 		text-align: center;
 	}
@@ -2955,7 +2955,7 @@ input, select, textarea {
 		/* Header */
 
 			#header {
-				padding: 1em 0 10em 0;
+				padding: 3em 0 10em 0;
 			}
 
 				#header h1 {
@@ -3026,7 +3026,8 @@ input, select, textarea {
 				background-attachment: scroll,							scroll,							scroll;
 				background-image: url("images/top-1600.svg"), url("images/overlay.png"), url("../../images/header.jpg");
 				background-size: 1600px 230px,					auto,							cover;
-				padding: 1em 0 7em 0;
+				padding: 3em 0 7em 0;
+				margin-top: -40px;
 			}
 
 				#header:before {
@@ -3178,7 +3179,7 @@ input, select, textarea {
 			#header {
 				background-image: url("images/top-1280.svg"), url("images/overlay.png"), url("../../images/header.jpg");
 				background-size: 1280px 184px,						auto,							cover;
-				padding: 1em 0 5em 0;
+				padding: 3em 0 5em 0;
 			}
 
 				#header:before {
