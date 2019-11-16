@@ -1,5 +1,7 @@
 import { Component, OnInit, ɵEMPTY_ARRAY } from '@angular/core';
-import { SortingService } from '../sorting.service';
+import { SortingService } from '../../services/sorting.service';
+
+
 import { $ } from 'protractor';
 
 @Component({
