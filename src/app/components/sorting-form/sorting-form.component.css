@@ -7,6 +7,13 @@
     margin: 10px;
   }
 
+.sorting-array-form {
+  padding-bottom: 40px;
+}
+
+.btn#sort-button {
+  margin-top: 6px;
+}
 
 	@media screen and (max-width: 1159px) {
     .node {
@@ -73,10 +80,6 @@
   float: right;
 }
 
-#sort-button{
-  margin-bottom: 2%;
-}
-
 #pivot {
   line-height: 70px;
   text-align: center;
@@ -135,7 +138,4 @@ p{
   float: left;
 }
 
-.btn {
-  margin-top: 30px;
-}
 

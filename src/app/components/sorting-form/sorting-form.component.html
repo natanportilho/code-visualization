@@ -16,6 +16,9 @@
       </div>
       <div class="right-section">
         <button (click)="createArray()" class="btn btn-primary">Create Array</button>
+        <div *ngIf="nodes.length > 0">
+          <button (click)="callBubbleSort(nodes)" class="btn btn-primary" id="sort-button">Sort</button>
+        </div>
       </div>
     </div>
 
@@ -37,6 +40,6 @@
 
 <br>
 
-<div *ngIf="nodes.length > 0">
+<!-- <div *ngIf="nodes.length > 0">
   <button (click)="callBubbleSort(nodes)" class="btn btn-primary" id="sort-button">Sort</button>
-</div>
+</div> -->
