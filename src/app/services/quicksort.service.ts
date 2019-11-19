@@ -4,32 +4,14 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class QuicksortService {
-  items = [5, 3, 7, 6, 2, 9];
 
-  swap(items, leftIndex, rightIndex) {
-    var temp = items[leftIndex];
-    items[leftIndex] = items[rightIndex];
-    items[rightIndex] = temp;
-  }
-  partition(items, left, right) {
-    var pivot = items[Math.floor((right + left) / 2)], //middle element
-      i = left, //left pointer
-      j = right; //right pointer
-    while (i <= j) {
-      while (items[i] < pivot) {
-        i++;
-      }
-      while (items[j] > pivot) {
-        j--;
-      }
-      if (i <= j) {
-        this.swap(items, i, j); //sawpping two elements
-        i++;
-        j--;
-      }
-    }
-    return i;
-  }
+  // var node = {
+  //   id: i,
+  //   value: array[i],
+  //   colour: 'rgb(135, 206, 235)',
+  //   selected: "",
+  //   arrow: "hide-arrow"
+  // };
 
   quickSort(items, left, right) {
     var index;
@@ -46,7 +28,30 @@ export class QuicksortService {
     }
     return items;
   }
-  // first call to quick sort
-  // var sortedArray = quickSort(items, 0, items.length - 1);
-  // console.log(sortedArray); //prints [2,3,5,6,7,9]
+
+  partition(items, left, right) {
+    var pivot = items[Math.floor((right + left) / 2)], //middle element
+      i = left, //left pointer
+      j = right; //right pointer
+    while (i <= j) {
+      while (items[i].value < pivot.value) {
+        i++;
+      }
+      while (items[j].value > pivot.value) {
+        j--;
+      }
+      if (i <= j) {
+        this.swap(items, i, j); //sawpping two elements
+        i++;
+        j--;
+      }
+    }
+    return i;
+  }
+
+  swap(items, leftIndex, rightIndex) {
+    var temp = items[leftIndex];
+    items[leftIndex] = items[rightIndex];
+    items[rightIndex] = temp;
+  }
 }
