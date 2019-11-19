@@ -1,12 +1,12 @@
-import { Injectable } from '@angular/core';
-import { merge } from 'rxjs';
+import { Injectable } from "@angular/core";
+import { merge } from "rxjs";
 
 @Injectable()
 export class SortingService {
   pivot = {
     id: 0,
-    value: 'x',
-    colour: 'rgb(135, 206, 235)',
+    value: "x",
+    colour: "rgb(135, 206, 235)",
     selected: ""
   };
 
@@ -32,7 +32,7 @@ export class SortingService {
         array[j + 1].selected = "";
 
         if (j + 1 == end) {
-          console.log('j = ' + (j + 1) + ' end = ' + end);
+          console.log("j = " + (j + 1) + " end = " + end);
           this.selectNode(array[j + 1], "final-position");
           end--;
 
@@ -41,7 +41,7 @@ export class SortingService {
           }
         }
       }
-      if ((j + 1) < end) {
+      if (j + 1 < end) {
         this.bubbleSort(array, end, i, j + 1);
       } else if (i < array.length) {
         this.bubbleSort(array, end, i + 1, 0);
@@ -50,7 +50,7 @@ export class SortingService {
   }
 
   swap(array, i, j) {
-    console.log('swapping ' + array[i].value + ' > ' + array[j].value);
+    console.log("swapping " + array[i].value + " > " + array[j].value);
     var temp = array[i];
     array[i] = array[j];
     array[j] = temp;
@@ -64,10 +64,10 @@ export class SortingService {
 
   mergeSort(array, leftIndex, rightIndex) {
     if (leftIndex < rightIndex) {
-      let half = Math.floor(array.length / 2)
+      let half = Math.floor(array.length / 2);
       let leftHalf = array.slice(0, half);
       let rightHalf = array.slice(half, array.length);
-      leftHalf = this.mergeSort(leftHalf, 0, leftHalf.length - 1)
+      leftHalf = this.mergeSort(leftHalf, 0, leftHalf.length - 1);
       rightHalf = this.mergeSort(rightHalf, 0, rightHalf.length - 1);
       array = this.merge(leftHalf, rightHalf);
     }
@@ -121,7 +121,7 @@ export class SortingService {
     array[j].arrow = "show-arrow";
 
     setTimeout(() => {
-      // come from right 
+      // come from right
 
       array[emptySpot].value = ".";
       this.selectNode(array[emptySpot], "selected-red");
@@ -130,47 +130,44 @@ export class SortingService {
 
         setTimeout(() => {
           this.looptThroughFromRight(array, i, j, emptySpot);
-          
+
           /// come from left now
           setTimeout(() => {
             // this.quickSortFromLeft(array, i, j, emptySpot);
             this.looptThroughFromLeft(array, i, j, emptySpot);
-
           }, 1000);
           // now should find a way to call ir recursively
-
-
         }, 1000);
       }, 1000);
-
     }, 1000);
 
     this.quickSort(array, i, j);
-
   }
 
-
-  looptThroughFromLeft(array, i, j, emptySpot){
+  looptThroughFromLeft(array, i, j, emptySpot) {
     setTimeout(() => {
-      if (Number(array[i + 1].value) <= Number(this.pivot.value) && i + 1 != j){
+      if (
+        Number(array[i + 1].value) <= Number(this.pivot.value) &&
+        i + 1 != j
+      ) {
         array[i].arrow = "hide-arrow";
-        array[i+1].arrow = "show-arrow"; 
+        array[i + 1].arrow = "show-arrow";
         i++;
         this.looptThroughFromLeft(array, i, j, emptySpot);
-      } else{
+      } else {
         this.quickSortFromLeft(array, i, j, emptySpot);
       }
     }, 1000);
   }
 
-  looptThroughFromRight(array, i, j, emptySpot){
+  looptThroughFromRight(array, i, j, emptySpot) {
     setTimeout(() => {
-      if (Number(array[j].value) >= Number(this.pivot.value) && i != j){
+      if (Number(array[j].value) >= Number(this.pivot.value) && i != j) {
         array[j].arrow = "hide-arrow";
-        array[i-1].arrow = "show-arrow"; 
+        array[i - 1].arrow = "show-arrow";
         j--;
         this.looptThroughFromLeft(array, i, j, emptySpot);
-      } else{
+      } else {
         this.quickSortFromRight(array, i, j, emptySpot);
       }
     }, 1000);
@@ -189,16 +186,13 @@ export class SortingService {
     }
   }
 
-
   quickSortFromRight(array, i, j, emptySpot) {
-
     if (Number(array[j].value) < Number(this.pivot.value)) {
       array[emptySpot].value = array[j].value;
       this.selectNode(array[emptySpot], "");
       array[j].value = ".";
       emptySpot = j;
-    }
-    else if (this.quickSortFlagsMeet(i, j)) {
+    } else if (this.quickSortFlagsMeet(i, j)) {
       array[i].arrow = "hide-arrow";
       array[j].arrow = "hide-arrow";
       this.quickSortPlacePivotInFinalPosition(array, j);
@@ -214,5 +208,4 @@ export class SortingService {
   quickSortFlagsMeet(i, j) {
     return i == j && this.pivot.value != "";
   }
-
 }
