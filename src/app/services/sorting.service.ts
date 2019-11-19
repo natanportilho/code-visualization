@@ -9,6 +9,7 @@ export class SortingService {
     colour: "rgb(135, 206, 235)",
     selected: ""
   };
+  lol = 1;
 
   bubbleSort(array, end, i, j) {
     if (i == array.length) {
@@ -110,9 +111,7 @@ export class SortingService {
   }
 
   quickSort(array, i, j) {
-    let lastIndex = j;
     let emptySpot = 0;
-
     this.selectNode(array[i], "selected");
     this.selectNode(this.pivot, "selected");
     this.pivot.value = array[0].value; // is this correct? Getting always 0 index as pivot?
@@ -122,26 +121,19 @@ export class SortingService {
 
     setTimeout(() => {
       // come from right
-
       array[emptySpot].value = ".";
       this.selectNode(array[emptySpot], "selected-red");
       setTimeout(() => {
         this.selectNode(array[j], "selected");
-
         setTimeout(() => {
           this.looptThroughFromRight(array, i, j, emptySpot);
-
           /// come from left now
           setTimeout(() => {
-            // this.quickSortFromLeft(array, i, j, emptySpot);
             this.looptThroughFromLeft(array, i, j, emptySpot);
           }, 1000);
-          // now should find a way to call ir recursively
         }, 1000);
       }, 1000);
     }, 1000);
-
-    this.quickSort(array, i, j);
   }
 
   looptThroughFromLeft(array, i, j, emptySpot) {
