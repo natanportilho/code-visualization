@@ -109,14 +109,13 @@ export class SortingService {
     }
   }
 
-  quickSort(array, j) {
-    let i = 0;
+  quickSort(array, i, j) {
     let lastIndex = j;
     let emptySpot = 0;
 
     this.selectNode(array[i], "selected");
     this.selectNode(this.pivot, "selected");
-    this.pivot.value = array[0].value;
+    this.pivot.value = array[0].value; // is this correct? Getting always 0 index as pivot?
 
     array[i].arrow = "show-arrow";
     array[j].arrow = "show-arrow";
@@ -130,12 +129,13 @@ export class SortingService {
         this.selectNode(array[j], "selected");
 
         setTimeout(() => {
-          this.quickSortFromRight(array, i, j, emptySpot);
+          this.looptThroughFromRight(array, i, j, emptySpot);
+          
           /// come from left now
-
-
           setTimeout(() => {
-            this.quickSortFromLeft(array, i, j, emptySpot);
+            // this.quickSortFromLeft(array, i, j, emptySpot);
+            this.looptThroughFromLeft(array, i, j, emptySpot);
+
           }, 1000);
           // now should find a way to call ir recursively
 
@@ -143,48 +143,65 @@ export class SortingService {
         }, 1000);
       }, 1000);
 
-      //   setTimeout(() =>{
-
-      // if (lastIndex - 1 > 0){
-      //   this.quickSort(array, lastIndex - 1);
-      // }
-      //   }, 1000);
-
     }, 1000);
+
+    this.quickSort(array, i, j);
 
   }
 
 
-  quickSortFromLeft(array, i, j, emptySpot) {
-    while (Number(array[i + 1].value) <= Number(this.pivot.value) && i + 1 != j) {
-      i++;
-    }
+  looptThroughFromLeft(array, i, j, emptySpot){
+    setTimeout(() => {
+      if (Number(array[i + 1].value) <= Number(this.pivot.value) && i + 1 != j){
+        array[i].arrow = "hide-arrow";
+        array[i+1].arrow = "show-arrow"; 
+        i++;
+        this.looptThroughFromLeft(array, i, j, emptySpot);
+      } else{
+        this.quickSortFromLeft(array, i, j, emptySpot);
+      }
+    }, 1000);
+  }
 
+  looptThroughFromRight(array, i, j, emptySpot){
+    setTimeout(() => {
+      if (Number(array[j].value) >= Number(this.pivot.value) && i != j){
+        array[j].arrow = "hide-arrow";
+        array[i-1].arrow = "show-arrow"; 
+        j--;
+        this.looptThroughFromLeft(array, i, j, emptySpot);
+      } else{
+        this.quickSortFromRight(array, i, j, emptySpot);
+      }
+    }, 1000);
+  }
+
+  quickSortFromLeft(array, i, j, emptySpot) {
     if (Number(array[i + 1].value) > Number(this.pivot.value)) {
       array[emptySpot].value = array[i + 1].value;
       this.selectNode(array[emptySpot], "");
       array[i + 1].value = ".";
       emptySpot = i + 1;
-      // this.quickSortFromRight(array, i, j, emptySpot);
     } else if (this.quickSortFlagsMeet(i + 1, j)) {
-      this.quickSortPlacePivotInFinalPosition(array, emptySpot);
+      array[i].arrow = "hide-arrow";
+      array[j].arrow = "hide-arrow";
+      this.quickSortPlacePivotInFinalPosition(array, j);
     }
   }
 
 
   quickSortFromRight(array, i, j, emptySpot) {
-    while (Number(array[j].value) >= Number(this.pivot.value) && i != j) {
-      j--;
-    }
+
     if (Number(array[j].value) < Number(this.pivot.value)) {
       array[emptySpot].value = array[j].value;
       this.selectNode(array[emptySpot], "");
       array[j].value = ".";
       emptySpot = j;
-      // this.quickSortFromLeft(array, i, j, emptySpot);
     }
     else if (this.quickSortFlagsMeet(i, j)) {
-      this.quickSortPlacePivotInFinalPosition(array, emptySpot);
+      array[i].arrow = "hide-arrow";
+      array[j].arrow = "hide-arrow";
+      this.quickSortPlacePivotInFinalPosition(array, j);
     }
   }
 
