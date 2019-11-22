@@ -31,7 +31,7 @@
 
 <div class="sorting-array-form">
   <div *ngFor="let node of nodes" class="node {{node.selected}}" id="{{node.id}}">
-    <div class="content">{{node.value}}</div>
+    <div id="node{{node.id}}"class="content">{{node.value}}</div>
     <p class="{{node.arrow}}">
       <i class="arrow up"></i>
     </p>
