@@ -4,6 +4,7 @@ const assert = require("assert");
 const By = webdriver.By;
 const Until = webdriver.until;
 
+/*TODO: Probably should change this to Mocha + Typescript with selenium */
 var methods = {
   async createArrayTest() {
     console.log("Running createArrayTest.");
