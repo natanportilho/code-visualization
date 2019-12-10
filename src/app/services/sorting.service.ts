@@ -1,15 +1,7 @@
 import { Injectable } from "@angular/core";
-import { merge } from "rxjs";
 
 @Injectable()
 export class SortingService {
-  pivot = {
-    id: 0,
-    value: "x",
-    colour: "rgb(135, 206, 235)",
-    selected: ""
-  };
-  lol = 1;
 
   bubbleSort(array, end, i, j) {
     if (i == array.length) {
@@ -62,5 +54,4 @@ export class SortingService {
       node.selected = cssClass;
     }
   }
-
 }

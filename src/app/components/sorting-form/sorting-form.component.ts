@@ -2,10 +2,6 @@ import { Component, OnInit, ɵEMPTY_ARRAY } from '@angular/core';
 import { SortingService } from '../../services/sorting.service';
 import { QuicksortService } from '../../services/quicksort.service';
 
-
-
-import { $ } from 'protractor';
-
 @Component({
   selector: 'sorting-form',
   templateUrl: './sorting-form.component.html',
@@ -26,7 +22,7 @@ export class SortingFormComponent implements OnInit {
   };
 
   constructor(private sortingService: SortingService, private quickSortService: QuicksortService) {
-    this.pivot = sortingService.pivot;
+    this.pivot = quickSortService.pivot;
   }
 
   ngOnInit() {
@@ -38,7 +34,8 @@ export class SortingFormComponent implements OnInit {
     if (algorithm == "1") {
       this.sortingService.bubbleSort(array, array.length - 1, 0, 0);
     } else if (algorithm == "2") {
-      // let sortedArray = this.quickSortService.quickSort(array, 0, array.length - 1);
+      let sortedArray = this.quickSortService.quickSort(array);
+      console.log(sortedArray);
     }
   }
 
