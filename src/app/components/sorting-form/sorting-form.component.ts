@@ -34,8 +34,8 @@ export class SortingFormComponent implements OnInit {
     if (algorithm == "1") {
       this.sortingService.bubbleSort(array, array.length - 1, 0, 0);
     } else if (algorithm == "2") {
-      let sortedArray = this.quickSortService.quickSort(array);
-      console.log(sortedArray);
+      let sortedArray = this.quickSortService.run(array);
+      // console.log(sortedArray);
     }
   }
 
