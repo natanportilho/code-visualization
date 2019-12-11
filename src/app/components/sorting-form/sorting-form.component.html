@@ -25,7 +25,15 @@
 
     <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name pivot-element">Pivot:</label>
     <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node {{pivot.selected}} pivot-element">{{pivot.value}}</div>
-  </div>
+ 
+    <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name less-element">Less:</label>
+    <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node less-element"></div>
+
+    <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name greater-element">Greater:</label>
+    <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node greater-element"></div>
+
+    <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name not-compared-element">Not Compared:</label>
+    <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node not-compared-element"></div>
 </div>
 <br>
 
@@ -37,32 +45,7 @@
     </p>
   </div>
 
-  <!-- quicksort -->
-  <br>
-  <div *ngFor="let node of lessQuickSortNodes" class="node {{node.selected}}" id="{{node.id}}">
-    <div id="node{{node.id}}"class="content">{{node.value}}</div>
-    <p class="{{node.arrow}}">
-      <i class="arrow up"></i>
-    </p>
-  </div>
-  
-  <br>
-  <div *ngFor="let node of lessQuickSortNodes" class="node {{node.selected}}" id="{{node.id}}">
-    <div id="node{{node.id}}"class="content">{{node.value}}</div>
-    <p class="{{node.arrow}}">
-      <i class="arrow up"></i>
-    </p>
-  </div>
-  <!--  -->
-</div>
 
-<!-- <div class="sorting-array-form">
-  <div *ngFor="let node of nodes" class="node {{node.selected}}" id="{{node.id}}">
-    <div id="node{{node.id}}"class="content">{{node.value}}</div>
-    <p class="{{node.arrow}}">
-      <i class="arrow up"></i>
-    </p>
-  </div>
-</div> -->
+</div>
 
 <br>
