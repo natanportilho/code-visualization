@@ -12,14 +12,16 @@ export class QuicksortService {
     selected: ""
   };
 
-  run(array) {
-    this.quickSort(array);
+  run(array, lessArray, greaterArray) {
+    const arrayValues = this.getArrayValues(array);
+
+    this.quickSort(arrayValues);
     console.table(this.states);
 
-    this.runQuickSortStates(array, 0);
+    this.runQuickSortStates(array, arrayValues, 0, lessArray, greaterArray);
   }
 
-  runQuickSortStates(array, position) {
+  runQuickSortStates(array, arrayValues, position, lessArray, greaterArray) {
     // console.log('lolo');
     setTimeout(() => {
       console.log(this.states);
@@ -30,10 +32,36 @@ export class QuicksortService {
       array[this.states[position].pivotIndex].value = "";
 
       setTimeout(() => {
+        for (let i = 0; i < arrayValues.length; i++) {
+          array[i].value = arrayValues[i];
+        }
+
+        for (const node of array) {
+          this.selectNode(node, "");
+        }
+
+        let less = this.states[position].less;
+        let greater = this.states[position].greater;
+
+        for (const node of lessArray) {
+          node.value = "";
+        }
+
+        for (let i = 0; i < less.length; i++) {
+          lessArray[i].value = less[i];
+        }
+
         this.selectNode(array[this.states[position].position], "selected");
 
         if (position < this.states.length) {
-          this.runQuickSortStates(array, ++position);
+          position = position + 1;
+          this.runQuickSortStates(
+            array,
+            this.states[position].array,
+            position,
+            lessArray,
+            greaterArray
+          );
         }
       }, 4000);
     }, 4000);
@@ -52,19 +80,19 @@ export class QuicksortService {
 
     for (let i = 0; i < array.length; i++) {
       if (i !== pivotIndex) {
+        array[i] > pivot ? greater.push(array[i]) : less.push(array[i]);
+
         const state = new QuickSortState(
           this.states.length,
-          pivot.value,
+          pivot,
           pivotIndex,
           i,
-          array[i].value,
-          array
+          array[i],
+          array,
+          less,
+          greater
         );
         this.saveState(state);
-
-        array[i].value > pivot.value
-          ? greater.push(array[i])
-          : less.push(array[i]);
       }
     }
 

@@ -5,6 +5,9 @@ export class QuickSortState {
   position: number;
   value: string;
   array: any;
+  less: any;
+  greater: any;
+
 
   constructor(
     id: number,
@@ -12,7 +15,11 @@ export class QuickSortState {
     pivotIndex: number,
     position: number,
     value: string,
-    array: any
+    array: any,
+    less: any,
+    greater: any
+
+
   ) {
     this.id = id;
     this.pivot = pivot;
@@ -20,5 +27,7 @@ export class QuickSortState {
     this.position = position;
     this.value = value;
     this.array = array;
+    this.less = less;
+    this.greater = greater;
   }
 }

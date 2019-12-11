@@ -36,6 +36,33 @@
       <i class="arrow up"></i>
     </p>
   </div>
+
+  <!-- quicksort -->
+  <br>
+  <div *ngFor="let node of lessQuickSortNodes" class="node {{node.selected}}" id="{{node.id}}">
+    <div id="node{{node.id}}"class="content">{{node.value}}</div>
+    <p class="{{node.arrow}}">
+      <i class="arrow up"></i>
+    </p>
+  </div>
+  
+  <br>
+  <div *ngFor="let node of lessQuickSortNodes" class="node {{node.selected}}" id="{{node.id}}">
+    <div id="node{{node.id}}"class="content">{{node.value}}</div>
+    <p class="{{node.arrow}}">
+      <i class="arrow up"></i>
+    </p>
+  </div>
+  <!--  -->
 </div>
+
+<!-- <div class="sorting-array-form">
+  <div *ngFor="let node of nodes" class="node {{node.selected}}" id="{{node.id}}">
+    <div id="node{{node.id}}"class="content">{{node.value}}</div>
+    <p class="{{node.arrow}}">
+      <i class="arrow up"></i>
+    </p>
+  </div>
+</div> -->
 
 <br>
