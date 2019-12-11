@@ -16,10 +16,26 @@ export class QuicksortService {
     this.quickSort(array);
     console.table(this.states);
 
+    this.runQuickSortStates(array, 0);
+  }
+
+  runQuickSortStates(array, position) {
+    // console.log('lolo');
     setTimeout(() => {
-      this.pivot.value = this.states[0].pivot;
-      array[this.states[0].pivotIndex].value = '';
-      this.selectNode(array[this.states[0].id], "selected");
+      console.log(this.states);
+      console.log("position" + position);
+      console.log("pivot changing to " + this.states[position].pivot);
+
+      this.pivot.value = this.states[position].pivot;
+      array[this.states[position].pivotIndex].value = "";
+
+      setTimeout(() => {
+        this.selectNode(array[this.states[position].position], "selected");
+
+        if (position < this.states.length) {
+          this.runQuickSortStates(array, ++position);
+        }
+      }, 4000);
     }, 4000);
   }
 
