@@ -12,55 +12,37 @@ export class QuicksortService {
     selected: ""
   };
 
-  run(array, lessArray, greaterArray) {
+  run(array) {
     const arrayValues = this.getArrayValues(array);
 
     this.quickSort(arrayValues);
     console.table(this.states);
 
-    this.runQuickSortStates(array, arrayValues, 0, lessArray, greaterArray);
+    this.runQuickSortStates(array, arrayValues, 0);
   }
 
-  runQuickSortStates(array, arrayValues, position, lessArray, greaterArray) {
-    // console.log('lolo');
+  runQuickSortStates(array, arrayValues, position) {
+
     setTimeout(() => {
       console.log(this.states);
       console.log("position" + position);
       console.log("pivot changing to " + this.states[position].pivot);
 
-      this.pivot.value = this.states[position].pivot;
-      array[this.states[position].pivotIndex].value = "";
 
       setTimeout(() => {
-        for (let i = 0; i < arrayValues.length; i++) {
+        const state = this.states[position];
+        const currentArray = state.array;
+
+        for (let i = 0; i < currentArray.length; i++) {
           array[i].value = arrayValues[i];
         }
-
-        for (const node of array) {
-          this.selectNode(node, "");
-        }
-
-        let less = this.states[position].less;
-        let greater = this.states[position].greater;
-
-        for (const node of lessArray) {
-          node.value = "";
-        }
-
-        for (let i = 0; i < less.length; i++) {
-          lessArray[i].value = less[i];
-        }
-
-        this.selectNode(array[this.states[position].position], "selected");
 
         if (position < this.states.length) {
           position = position + 1;
           this.runQuickSortStates(
             array,
             this.states[position].array,
-            position,
-            lessArray,
-            greaterArray
+            position
           );
         }
       }, 4000);
@@ -90,8 +72,13 @@ export class QuicksortService {
           array[i],
           array,
           less,
-          greater
+          greater,
+          this.getNotComparedElements(array, pivot, less, greater)
         );
+
+          
+        console.log('not compared' + this.getNotComparedElements(array, pivot, less, greater));
+
         this.saveState(state);
       }
     }
@@ -116,5 +103,16 @@ export class QuicksortService {
     if (node.selected !== "final-position") {
       node.selected = cssClass;
     }
+  }
+
+  getNotComparedElements(all, pivot, less, greater) {
+    let notCompared = [];
+
+    for (let i = 0; i < all.length; i++) {
+      if (pivot != i && !less.includes(i) && !greater.includes(i)) {
+        notCompared.push(i);
+      }
+    }
+    return notCompared;
   }
 }

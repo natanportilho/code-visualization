@@ -10,8 +10,6 @@ import { QuicksortService } from '../../services/quicksort.service';
 })
 export class SortingFormComponent implements OnInit {
   nodes = [];
-  lessQuickSortNodes = [];
-  greaterQuickSortNodes = [];
 
   pivot: any;
   isPivotVisible: boolean = false;
@@ -37,7 +35,7 @@ export class SortingFormComponent implements OnInit {
     if (algorithm == "1") {
       this.sortingService.bubbleSort(array, array.length - 1, 0, 0);
     } else if (algorithm == "2") {
-      let sortedArray = this.quickSortService.run(array, this.lessQuickSortNodes, this.greaterQuickSortNodes);
+      let sortedArray = this.quickSortService.run(array);
       // console.log(sortedArray);
     }
   }

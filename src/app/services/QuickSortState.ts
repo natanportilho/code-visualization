@@ -7,7 +7,7 @@ export class QuickSortState {
   array: any;
   less: any;
   greater: any;
-
+  notCompared: any;
 
   constructor(
     id: number,
@@ -17,9 +17,8 @@ export class QuickSortState {
     value: string,
     array: any,
     less: any,
-    greater: any
-
-
+    greater: any,
+    notCompared: any
   ) {
     this.id = id;
     this.pivot = pivot;
@@ -29,5 +28,6 @@ export class QuickSortState {
     this.array = array;
     this.less = less;
     this.greater = greater;
+    this.notCompared = notCompared;
   }
 }
