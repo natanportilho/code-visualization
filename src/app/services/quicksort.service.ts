@@ -12,78 +12,84 @@ export class QuicksortService {
     selected: ""
   };
 
+  alreadySorted = [];
+
   run(array) {
     const arrayValues = this.getArrayValues(array);
 
-    this.quickSort(arrayValues);
+    this.quickSortSimple(arrayValues);
     console.table(this.states);
 
-    this.runQuickSortStates(array, arrayValues, 0);
+    this.runQuickSortStates(array, 0);
   }
 
-  runQuickSortStates(array, arrayValues, position) {
-
+  runQuickSortStates(array, position) {
     setTimeout(() => {
-      console.log(this.states);
-      console.log("position" + position);
-      console.log("pivot changing to " + this.states[position].pivot);
+      console.log('calling');
+      const state = this.states[position];
+      const less = state.less;
+      const greater = state.greater;
+      let lastModifiedIndex = 0;
 
-
-      setTimeout(() => {
-        const state = this.states[position];
-        const currentArray = state.array;
-
-        for (let i = 0; i < currentArray.length; i++) {
-          array[i].value = arrayValues[i];
+      let j = 0;
+      for (let i = 0; i < less.length; i++) {
+        while(array[j].selected == 'final-position' && j < array.length){
+          j++;
         }
+        array[j].value = less[i];
+        lastModifiedIndex = j + 1;
+        j++;
+      }
 
-        if (position < this.states.length) {
-          position = position + 1;
-          this.runQuickSortStates(
-            array,
-            this.states[position].array,
-            position
-          );
+      array[lastModifiedIndex].value = state.pivot;
+      array[lastModifiedIndex].selected = 'final-position';
+
+      
+      for (let i = 0; i < greater.length; i++) {
+        while(array[j].selected == 'final-position' && j < array.length){
+          j++;
         }
-      }, 4000);
-    }, 4000);
+        array[j].value = greater[i];
+        j++;
+      }
+
+      // console.log('positions ' + position + ' < ' + this.);
+      if (position < this.states.length) {
+        this.runQuickSortStates(array, ++position);
+      }
+    }, 2000);
   }
 
   quickSort(array) {
-    if (array.length <= 1) {
-      return array;
-    }
-
-    const pivotIndex = 0;
-    const pivot = array[pivotIndex];
-
-    const less = [];
-    const greater = [];
-
-    for (let i = 0; i < array.length; i++) {
-      if (i !== pivotIndex) {
-        array[i] > pivot ? greater.push(array[i]) : less.push(array[i]);
-
-        const state = new QuickSortState(
-          this.states.length,
-          pivot,
-          pivotIndex,
-          i,
-          array[i],
-          array,
-          less,
-          greater,
-          this.getNotComparedElements(array, pivot, less, greater)
-        );
-
-          
-        console.log('not compared' + this.getNotComparedElements(array, pivot, less, greater));
-
-        this.saveState(state);
-      }
-    }
-
-    return [...this.quickSort(less), pivot, ...this.quickSort(greater)];
+    // if (array.length <= 1) {
+    //   return array;
+    // }
+    // const pivotIndex = 0;
+    // const pivot = array[pivotIndex];
+    // const less = [];
+    // const greater = [];
+    // for (let i = 0; i < array.length; i++) {
+    //   if (i !== pivotIndex) {
+    //     array[i] > pivot ? greater.push(array[i]) : less.push(array[i]);
+    //     const state = new QuickSortState(
+    //       this.states.length,
+    //       pivot,
+    //       pivotIndex,
+    //       i,
+    //       array[i],
+    //       array,
+    //       less,
+    //       greater,
+    //       this.getNotComparedElements(array, pivot, less, greater)
+    //     );
+    //     console.log(
+    //       "not compared" +
+    //         this.getNotComparedElements(array, pivot, less, greater)
+    //     );
+    //     this.saveState(state);
+    //   }
+    // }
+    // return [...this.quickSort(less), pivot, ...this.quickSort(greater)];
   }
 
   saveState(state: QuickSortState) {
@@ -114,5 +120,29 @@ export class QuicksortService {
       }
     }
     return notCompared;
+  }
+
+  quickSortSimple(array) {
+    if (array.length <= 1) {
+      return array;
+    }
+    let pivot = array[0];
+
+    let less = [];
+    let greater = [];
+
+    for (let i = 1; i < array.length; i++) {
+      if (array[i] <= pivot) {
+        less.push(array[i]);
+      } else {
+        greater.push(array[i]);
+      }
+    }
+
+    const state = new QuickSortState(pivot, less, greater);
+    this.saveState(state);
+
+    this.quickSortSimple(less);
+    this.quickSortSimple(greater);
   }
 }
