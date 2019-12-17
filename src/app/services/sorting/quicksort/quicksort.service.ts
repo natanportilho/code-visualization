@@ -1,16 +1,20 @@
-import { Injectable } from "@angular/core";
-import { QuickSortState } from "./QuickSortState";
-import { QuickSortNode } from "./QuickSortNode";
+import { Injectable } from '@angular/core';
+import { QuickSortState } from './QuickSortState';
+import { QuickSortNode } from './QuickSortNode';
+import { SelectorService } from '../../selector/selector.service';
+import { Constant } from '../quicksort/Constant';
 
 // 2,6,5,3,8,7,1,0
 @Injectable()
 export class QuicksortService {
+
+  constructor(private selector: SelectorService) {
+  }
+
   frontEndArray = [];
   nodes = [];
   states = [];
-  LESS = 'less';
-  GREATER = 'greater';
-  NONE = 'none';
+
 
   run(array) {
     this.frontEndArray = array;
@@ -30,17 +34,17 @@ export class QuicksortService {
     }
   }
 
-  private clearOrderedNodes(pivot: any) {
+  private clearOrderedNodes(pivot: QuickSortNode) {
     this.nodes = this.organizePositions(this.nodes, pivot, true);
     this.createState();
   }
 
-  private orderNodes(pivot: any) {
+  private orderNodes(pivot: QuickSortNode) {
     this.nodes = this.organizePositions(this.nodes, pivot, false);
     this.createState();
   }
 
-  private selectNodePositions(pivot: any) {
+  private selectNodePositions(pivot: QuickSortNode) {
     this.selectPositions(this.nodes, pivot);
     this.createState();
   }
@@ -83,9 +87,9 @@ export class QuicksortService {
     for (const node of nodes) {
       if (node !== pivot) {
         if (node.value <= pivot.value) {
-          node.position = this.LESS;
+          node.position = Constant.LESS;
         } else {
-          node.position = this.GREATER;
+          node.position = Constant.GREATER;
         }
       }
     }
@@ -98,32 +102,35 @@ export class QuicksortService {
     for (const node of nodes) {
       if (node !== pivot) {
         if (node.value <= pivot.value) {
-          node.position = this.LESS;
+          node.position = Constant.LESS;
           less.push(node);
         } else {
-          node.position = this.GREATER;
+          node.position = Constant.GREATER;
           greater.push(node);
         }
         if (clean) {
-          node.position = this.NONE;
+          node.position = Constant.NONE;
         }
       }
     }
 
     const newArray = [];
+    this.fillArray(newArray, less);
+    this.fillPivot(pivot, newArray);
+    this.fillArray(newArray, greater);
+    return newArray;
+  }
 
-    for (const node of less) {
-      newArray.push(node);
-    }
-
+  private fillPivot(pivot: QuickSortNode, newArray: any[]) {
     pivot.sorted = true;
     pivot.isPivot = false;
     newArray.push(pivot);
+  }
 
-    for (const node of greater) {
-      newArray.push(node);
+  private fillArray(arrayToFill: QuickSortNode[], oldArray: QuickSortNode[]) {
+    for (const node of oldArray) {
+      arrayToFill.push(node);
     }
-    return newArray;
   }
 
   private allSorted() {
@@ -143,30 +150,25 @@ export class QuicksortService {
 
         for (let i = 0; i < nodes.length; i++) {
           this.frontEndArray[i].value = nodes[i].value;
-          this.selectNode(this.frontEndArray[i], "");
+          this.selector.selectNode(this.frontEndArray[i], '');
         }
 
         for (let i = 0; i < nodes.length; i++) {
+          const nodeToSelect = this.frontEndArray[i];
           if (nodes[i].isPivot) {
-            this.selectNode(this.frontEndArray[i], "pivot-element");
-          } else if (nodes[i].position == this.LESS) {
-            this.selectNode(this.frontEndArray[i], "less-element");
-          } else if (nodes[i].position == this.GREATER) {
-            this.selectNode(this.frontEndArray[i], "greater-element");
+            this.selector.selectNode(nodeToSelect, Constant.PIVOT_CLASS);
+          } else if (nodes[i].position == Constant.LESS) {
+            this.selector.selectNode(nodeToSelect, Constant.LESS_CLASS);
+          } else if (nodes[i].position == Constant.GREATER) {
+            this.selector.selectNode(nodeToSelect, Constant.GREATER_CLASS);
           } else if (nodes[i].sorted == true) {
-            this.selectNode(this.frontEndArray[i], "final-position");
+            this.selector.selectNode(nodeToSelect, Constant.SORTED_CLASS);
           }
         }
 
         this.presentQuickSortStates();
       }
     }, 3000);
-  }
-
-  selectNode(node, cssClass) {
-    if (node.selected !== "final-position") {
-      node.selected = cssClass;
-    }
   }
 
 }
