@@ -2,10 +2,10 @@ import { QuickSortNode } from "./QuickSortNode";
 
 export class QuickSortState {
   nodes: QuickSortNode[];
-  pivot: QuickSortNode;
+  // pivot: QuickSortNode;
 
-  constructor(nodes: QuickSortNode[], pivot: QuickSortNode) {
+  constructor(nodes: QuickSortNode[]) {
     this.nodes = nodes;
-    this.pivot = pivot;
+    // this.pivot = pivot;
   }
 }

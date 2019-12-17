@@ -22,26 +22,40 @@ export class QuicksortService {
     this.nodes = this.getQuickSortNodes(array);
     this.quickSort(this.nodes);
     this.presentQuickSortStates();
+    this.showStates();
     // console.table(this.states);
     // console.log(this.frontEndArray);
   }
 
   private quickSort(nodes: QuickSortNode[]) {
     const pivot = this.setPivot(nodes);
-    console.table(pivot);
+
+    let array1 = this.nodes.map(x => Object.assign({}, x));
+
+
+    const state1 = new QuickSortState(array1)
+    this.saveState(state1);
+    // console.table(pivot);
     this.selectPositions(this.nodes, pivot);
-    this.saveState(new QuickSortState(this.nodes, pivot));
+    let array2 = this.nodes.map(x => Object.assign({}, x));
+    const state2 = new QuickSortState(array2)
+    this.saveState(state2);
     // console.table(this.nodes);
     this.nodes = this.organizePositions(this.nodes, pivot);
-    this.saveState(new QuickSortState(this.nodes, pivot));
+    let array3 = this.nodes.map(x => Object.assign({}, x));
+    const state3 = new QuickSortState(array3)
+    this.saveState(state3);
     // console.table(this.nodes);
 
-    // if (!this.allSorted(this.nodes)) {
-    //   this.quickSort(this.nodes);
-    // }
+    if (!this.allSorted(this.nodes)) {
+      this.quickSort(this.nodes);
+    }
   }
 
   private saveState(state: QuickSortState) {
+    console.log('saving this state');
+    console.table(state);
+
     this.states.push(state);
   }
 
@@ -98,8 +112,10 @@ export class QuicksortService {
     for (const node of nodes) {
       if (node !== pivot) {
         if (node.value <= pivot.value) {
+          node.position = 'none';
           less.push(node);
         } else {
+          node.position = 'none';
           greater.push(node);
         }
       }
@@ -111,7 +127,7 @@ export class QuicksortService {
       newArray.push(node);
     }
 
-    console.log("this is pivot " + pivot.value);
+    // console.log("this is pivot " + pivot.value);
     pivot.sorted = true;
     pivot.isPivot = false;
     newArray.push(pivot);
@@ -142,8 +158,6 @@ export class QuicksortService {
           this.frontEndArray[i].value = nodes[i].value;
         }
 
-        console.table(this.states[0]);
-
         for (let i = 0; i < nodes.length; i++) {
           if (nodes[i].isPivot) {
             this.selectNode(this.frontEndArray[i], "pivot-element");
@@ -158,12 +172,19 @@ export class QuicksortService {
 
         this.presentQuickSortStates();
       }
-    }, 5000);
+    }, 2000);
   }
 
   selectNode(node, cssClass) {
     if (node.selected !== "final-position") {
       node.selected = cssClass;
+    }
+  }
+
+  private showStates(){
+    console.log('show states');
+    for (let state of this.states){
+      console.table(state);
     }
   }
 }
