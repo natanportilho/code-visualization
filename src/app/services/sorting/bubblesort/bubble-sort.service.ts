@@ -20,7 +20,6 @@ export class BubbleSortService {
     setTimeout(() => {
       if (Number(array[j].value) > Number(array[j + 1].value)) {
         this.selector.selectNode(array[j + 1], Constant.SELECTED_COMPARISON);
-
       }
     }, 500);
 
