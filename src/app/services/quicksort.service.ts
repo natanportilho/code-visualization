@@ -9,22 +9,11 @@ export class QuicksortService {
   nodes = [];
   states = [];
 
-  pivot = {
-    id: 0,
-    value: "x",
-    colour: "rgb(135, 206, 235)",
-    selected: ""
-  };
-
   run(array) {
-    // console.log(array);
     this.frontEndArray = array;
     this.nodes = this.getQuickSortNodes(array);
     this.quickSort(this.nodes);
     this.presentQuickSortStates();
-    this.showStates();
-    // console.table(this.states);
-    // console.log(this.frontEndArray);
   }
 
   private quickSort(nodes: QuickSortNode[]) {
@@ -49,9 +38,6 @@ export class QuicksortService {
     const state4 = new QuickSortState(array4)
     this.saveState(state4);
 
-
-    // console.table(this.nodes);
-
     if (!this.allSorted(this.nodes)) {
       this.quickSort(this.nodes);
     }
@@ -62,15 +48,6 @@ export class QuicksortService {
     console.table(state);
 
     this.states.push(state);
-  }
-
-  private getArrayValues(array) {
-    const arrayValues = [];
-    for (const i of array) {
-      const value = i.value;
-      arrayValues.push(value);
-    }
-    return arrayValues;
   }
 
   private getQuickSortNodes(array: any) {
@@ -132,7 +109,6 @@ export class QuicksortService {
       newArray.push(node);
     }
 
-    // console.log("this is pivot " + pivot.value);
     pivot.sorted = true;
     pivot.isPivot = false;
     newArray.push(pivot);
@@ -186,10 +162,4 @@ export class QuicksortService {
     }
   }
 
-  private showStates() {
-    console.log('show states');
-    for (let state of this.states) {
-      console.table(state);
-    }
-  }
 }
