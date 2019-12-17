@@ -20,22 +20,35 @@ export class QuicksortService {
   }
 
   private quickSort() {
-
-    const pivot = this.setPivot();
-    this.createState();
-
-    this.selectPositions(this.nodes, pivot);
-    this.createState();
-
-    this.nodes = this.organizePositions(this.nodes, pivot, false);
-    this.createState();
-
-    this.nodes = this.organizePositions(this.nodes, pivot, true);
-    this.createState();
+    const pivot = this.selectPivot();
+    this.selectNodePositions(pivot);
+    this.orderNodes(pivot);
+    this.clearOrderedNodes(pivot);
 
     if (!this.allSorted()) {
       this.quickSort();
     }
+  }
+
+  private clearOrderedNodes(pivot: any) {
+    this.nodes = this.organizePositions(this.nodes, pivot, true);
+    this.createState();
+  }
+
+  private orderNodes(pivot: any) {
+    this.nodes = this.organizePositions(this.nodes, pivot, false);
+    this.createState();
+  }
+
+  private selectNodePositions(pivot: any) {
+    this.selectPositions(this.nodes, pivot);
+    this.createState();
+  }
+
+  private selectPivot() {
+    const pivot = this.setPivot();
+    this.createState();
+    return pivot;
   }
 
   private createState() {
@@ -86,16 +99,13 @@ export class QuicksortService {
       if (node !== pivot) {
         if (node.value <= pivot.value) {
           node.position = this.LESS;
-          if (clean) {
-            node.position = this.NONE;
-          }
           less.push(node);
         } else {
           node.position = this.GREATER;
-          if (clean) {
-            node.position = this.NONE;
-          }
           greater.push(node);
+        }
+        if (clean) {
+          node.position = this.NONE;
         }
       }
     }
