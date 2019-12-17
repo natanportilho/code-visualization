@@ -19,34 +19,32 @@ export class QuicksortService {
   private quickSort(nodes: QuickSortNode[]) {
 
     const pivot = this.setPivot(nodes);
-    let array1 = this.nodes.map(x => Object.assign({}, x));
-    const state1 = new QuickSortState(array1)
-    this.saveState(state1);
+    this.createState();
     // console.table(pivot);
     this.selectPositions(this.nodes, pivot);
-    let array2 = this.nodes.map(x => Object.assign({}, x));
-    const state2 = new QuickSortState(array2)
-    this.saveState(state2);
+    this.createState();
+
     // console.table(this.nodes);
     this.nodes = this.organizePositions(this.nodes, pivot,false);
-    let array3 = this.nodes.map(x => Object.assign({}, x));
-    const state3 = new QuickSortState(array3)
-    this.saveState(state3);
+    this.createState();
+
 
     this.nodes = this.organizePositions(this.nodes, pivot,true);
-    let array4 = this.nodes.map(x => Object.assign({}, x));
-    const state4 = new QuickSortState(array4)
-    this.saveState(state4);
+    this.createState();
+
 
     if (!this.allSorted(this.nodes)) {
       this.quickSort(this.nodes);
     }
   }
 
-  private saveState(state: QuickSortState) {
-    console.log('saving this state');
-    console.table(state);
+  private createState(){
+    let array = this.nodes.map(x => Object.assign({}, x));
+    const state = new QuickSortState(array)
+    this.saveState(state);
+  }
 
+  private saveState(state: QuickSortState) {
     this.states.push(state);
   }
 
