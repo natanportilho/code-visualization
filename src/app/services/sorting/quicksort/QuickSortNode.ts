@@ -1,5 +1,3 @@
-import { BoundElementPropertyAst } from '@angular/compiler';
-
 export class QuickSortNode {
   value: number;
   position: string;
