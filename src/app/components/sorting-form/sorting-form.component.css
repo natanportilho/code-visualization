@@ -93,12 +93,9 @@ div {
   vertical-align: middle;
 }
 
-.pivot-element {
-  visibility: hidden;
-}
-
 .node.pivot-element {
   background-color: black;
+  color: white;
 }
 
 .node.less-element {
