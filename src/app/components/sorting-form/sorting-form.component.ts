@@ -1,12 +1,12 @@
-import { Component, OnInit, ɵEMPTY_ARRAY } from '@angular/core';
-import { SortingService } from '../../services/sorting.service';
+import { Component, OnInit } from '@angular/core';
 import { QuicksortService } from '../../services/sorting/quicksort/quicksort.service';
+import { BubbleSortService } from 'src/app/services/sorting/bubblesort/bubble-sort.service';
 
 @Component({
   selector: 'sorting-form',
   templateUrl: './sorting-form.component.html',
   styleUrls: ['./sorting-form.component.css'],
-  providers: [SortingService, QuicksortService]
+  providers: [BubbleSortService, QuicksortService]
 })
 export class SortingFormComponent implements OnInit {
   nodes = [];
@@ -22,7 +22,7 @@ export class SortingFormComponent implements OnInit {
     ]
   };
 
-  constructor(private sortingService: SortingService, private quickSortService: QuicksortService) {
+  constructor(private bubbleSortService: BubbleSortService, private quickSortService: QuicksortService) {
 
   }
 
@@ -33,7 +33,7 @@ export class SortingFormComponent implements OnInit {
     const array = nodes;
     let algorithm = (<HTMLInputElement>document.getElementById("algorithm-selection")).value;
     if (algorithm == "1") {
-      this.sortingService.bubbleSort(array, array.length - 1, 0, 0);
+      this.bubbleSortService.run(array, array.length - 1, 0, 0);
     } else if (algorithm == "2") {
       let sortedArray = this.quickSortService.run(array);
     }
@@ -45,7 +45,7 @@ export class SortingFormComponent implements OnInit {
 
     if (array.length <= 1) {
       window.alert('Please create an array with at least two numbers :)');
-    } else if (array.length > 12){
+    } else if (array.length > 12) {
       window.alert('Please create an array with less than twelve numbers :)');
     } else {
       for (var i = 0; i < array.length; i++) {
