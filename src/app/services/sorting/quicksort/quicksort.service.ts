@@ -15,11 +15,11 @@ export class QuicksortService {
   run(array) {
     this.frontEndArray = array;
     this.nodes = this.getQuickSortNodes(array);
-    this.quickSort(this.nodes);
+    this.quickSort();
     this.presentQuickSortStates();
   }
 
-  private quickSort(nodes: QuickSortNode[]) {
+  private quickSort() {
 
     const pivot = this.setPivot();
     this.createState();
@@ -33,8 +33,8 @@ export class QuicksortService {
     this.nodes = this.organizePositions(this.nodes, pivot, true);
     this.createState();
 
-    if (!this.allSorted(this.nodes)) {
-      this.quickSort(this.nodes);
+    if (!this.allSorted()) {
+      this.quickSort();
     }
   }
 
@@ -116,8 +116,8 @@ export class QuicksortService {
     return newArray;
   }
 
-  private allSorted(nodes: QuickSortNode[]) {
-    for (const node of nodes) {
+  private allSorted() {
+    for (const node of this.nodes) {
       if (!node.sorted) {
         return false;
       }
