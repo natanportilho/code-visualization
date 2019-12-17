@@ -28,11 +28,9 @@ export class QuicksortService {
   }
 
   private quickSort(nodes: QuickSortNode[]) {
+
     const pivot = this.setPivot(nodes);
-
     let array1 = this.nodes.map(x => Object.assign({}, x));
-
-
     const state1 = new QuickSortState(array1)
     this.saveState(state1);
     // console.table(pivot);
@@ -41,10 +39,17 @@ export class QuicksortService {
     const state2 = new QuickSortState(array2)
     this.saveState(state2);
     // console.table(this.nodes);
-    this.nodes = this.organizePositions(this.nodes, pivot);
+    this.nodes = this.organizePositions(this.nodes, pivot,false);
     let array3 = this.nodes.map(x => Object.assign({}, x));
     const state3 = new QuickSortState(array3)
     this.saveState(state3);
+
+    this.nodes = this.organizePositions(this.nodes, pivot,true);
+    let array4 = this.nodes.map(x => Object.assign({}, x));
+    const state4 = new QuickSortState(array4)
+    this.saveState(state4);
+
+
     // console.table(this.nodes);
 
     if (!this.allSorted(this.nodes)) {
@@ -80,17 +85,11 @@ export class QuicksortService {
   private setPivot(nodes: QuickSortNode[]) {
     for (const node of this.nodes) {
       if (!node.sorted) {
+        console.log('setting a pivot');
         node.isPivot = true;
         return node;
       }
     }
-
-    // for (const i = 0; i < this.nodes.length; i++) {
-    //   if (!this.nodes[i].sorted) {
-    //     this.nodes[i].isPivot = true;
-    //     return this.nodes[i];
-    //   }
-    // }
   }
 
   private selectPositions(nodes: QuickSortNode[], pivot: QuickSortNode) {
@@ -105,17 +104,23 @@ export class QuicksortService {
     }
   }
 
-  private organizePositions(nodes: QuickSortNode[], pivot: QuickSortNode) {
+  private organizePositions(nodes: QuickSortNode[], pivot: QuickSortNode, clean:boolean) {
     let less = [];
     let greater = [];
 
     for (const node of nodes) {
       if (node !== pivot) {
         if (node.value <= pivot.value) {
-          node.position = 'none';
+          node.position = 'less';
+          if (clean){
+            node.position = 'node';
+          }
           less.push(node);
         } else {
-          node.position = 'none';
+          node.position = 'greater';
+          if (clean){
+            node.position = 'node';
+          }
           greater.push(node);
         }
       }
@@ -135,7 +140,6 @@ export class QuicksortService {
     for (const node of greater) {
       newArray.push(node);
     }
-
     return newArray;
   }
 
@@ -156,6 +160,7 @@ export class QuicksortService {
 
         for (let i = 0; i < nodes.length; i++) {
           this.frontEndArray[i].value = nodes[i].value;
+          this.selectNode(this.frontEndArray[i], "");
         }
 
         for (let i = 0; i < nodes.length; i++) {
@@ -172,7 +177,7 @@ export class QuicksortService {
 
         this.presentQuickSortStates();
       }
-    }, 2000);
+    }, 3000);
   }
 
   selectNode(node, cssClass) {
@@ -181,9 +186,9 @@ export class QuicksortService {
     }
   }
 
-  private showStates(){
+  private showStates() {
     console.log('show states');
-    for (let state of this.states){
+    for (let state of this.states) {
       console.table(state);
     }
   }
