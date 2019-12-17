@@ -8,6 +8,9 @@ export class QuicksortService {
   frontEndArray = [];
   nodes = [];
   states = [];
+  LESS = 'less';
+  GREATER = 'greater';
+  NONE = 'none';
 
   run(array) {
     this.frontEndArray = array;
@@ -57,7 +60,6 @@ export class QuicksortService {
   private setPivot() {
     for (const node of this.nodes) {
       if (!node.sorted) {
-        console.log('setting a pivot');
         node.isPivot = true;
         return node;
       }
@@ -68,9 +70,9 @@ export class QuicksortService {
     for (const node of nodes) {
       if (node !== pivot) {
         if (node.value <= pivot.value) {
-          node.position = "less";
+          node.position = this.LESS;
         } else {
-          node.position = "greater";
+          node.position = this.GREATER;
         }
       }
     }
@@ -83,15 +85,15 @@ export class QuicksortService {
     for (const node of nodes) {
       if (node !== pivot) {
         if (node.value <= pivot.value) {
-          node.position = 'less';
+          node.position = this.LESS;
           if (clean) {
-            node.position = 'node';
+            node.position = this.NONE;
           }
           less.push(node);
         } else {
-          node.position = 'greater';
+          node.position = this.GREATER;
           if (clean) {
-            node.position = 'node';
+            node.position = this.NONE;
           }
           greater.push(node);
         }
@@ -137,9 +139,9 @@ export class QuicksortService {
         for (let i = 0; i < nodes.length; i++) {
           if (nodes[i].isPivot) {
             this.selectNode(this.frontEndArray[i], "pivot-element");
-          } else if (nodes[i].position == "less") {
+          } else if (nodes[i].position == this.LESS) {
             this.selectNode(this.frontEndArray[i], "less-element");
-          } else if (nodes[i].position == "greater") {
+          } else if (nodes[i].position == this.GREATER) {
             this.selectNode(this.frontEndArray[i], "greater-element");
           } else if (nodes[i].sorted == true) {
             this.selectNode(this.frontEndArray[i], "final-position");
