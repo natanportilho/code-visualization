@@ -1,6 +1,6 @@
 import { Component, OnInit, ɵEMPTY_ARRAY } from '@angular/core';
 import { SortingService } from '../../services/sorting.service';
-import { QuicksortService } from '../../services/quicksort.service';
+import { QuicksortService } from '../../services/sorting/quicksort/quicksort.service';
 
 @Component({
   selector: 'sorting-form',
