@@ -18,27 +18,24 @@ export class QuicksortService {
 
   private quickSort(nodes: QuickSortNode[]) {
 
-    const pivot = this.setPivot(nodes);
+    const pivot = this.setPivot();
     this.createState();
-    // console.table(pivot);
+
     this.selectPositions(this.nodes, pivot);
     this.createState();
 
-    // console.table(this.nodes);
-    this.nodes = this.organizePositions(this.nodes, pivot,false);
+    this.nodes = this.organizePositions(this.nodes, pivot, false);
     this.createState();
 
-
-    this.nodes = this.organizePositions(this.nodes, pivot,true);
+    this.nodes = this.organizePositions(this.nodes, pivot, true);
     this.createState();
-
 
     if (!this.allSorted(this.nodes)) {
       this.quickSort(this.nodes);
     }
   }
 
-  private createState(){
+  private createState() {
     let array = this.nodes.map(x => Object.assign({}, x));
     const state = new QuickSortState(array)
     this.saveState(state);
@@ -57,7 +54,7 @@ export class QuicksortService {
     return nodes;
   }
 
-  private setPivot(nodes: QuickSortNode[]) {
+  private setPivot() {
     for (const node of this.nodes) {
       if (!node.sorted) {
         console.log('setting a pivot');
@@ -79,7 +76,7 @@ export class QuicksortService {
     }
   }
 
-  private organizePositions(nodes: QuickSortNode[], pivot: QuickSortNode, clean:boolean) {
+  private organizePositions(nodes: QuickSortNode[], pivot: QuickSortNode, clean: boolean) {
     let less = [];
     let greater = [];
 
@@ -87,13 +84,13 @@ export class QuicksortService {
       if (node !== pivot) {
         if (node.value <= pivot.value) {
           node.position = 'less';
-          if (clean){
+          if (clean) {
             node.position = 'node';
           }
           less.push(node);
         } else {
           node.position = 'greater';
-          if (clean){
+          if (clean) {
             node.position = 'node';
           }
           greater.push(node);
