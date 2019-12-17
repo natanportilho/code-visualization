@@ -1,33 +1,11 @@
-export class QuickSortState {
-  // id: number;
-  pivot: string;
-  // pivotIndex: number;
-  // position: number;
-  // value: string;
-  // array: any;
-  less: any;
-  greater: any;
-  // notCompared: any;
+import { QuickSortNode } from "./QuickSortNode";
 
-  constructor(
-    // id: number,
-    pivot: string,
-    // pivotIndex: number,
-    // position: number,
-    // value: string,
-    // array: any,
-    less: any,
-    greater: any,
-    // notCompared: any
-  ) {
-    // this.id = id;
+export class QuickSortState {
+  nodes: QuickSortNode[];
+  pivot: QuickSortNode;
+
+  constructor(nodes: QuickSortNode[], pivot: QuickSortNode) {
+    this.nodes = nodes;
     this.pivot = pivot;
-    // this.pivotIndex = pivotIndex;
-    // this.position = position;
-    // this.value = value;
-    // this.array = array;
-    this.less = less;
-    this.greater = greater;
-    // this.notCompared = notCompared;
   }
 }
