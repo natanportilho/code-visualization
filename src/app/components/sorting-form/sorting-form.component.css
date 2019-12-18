@@ -30,6 +30,10 @@
     width: 45px;
     height: 45px;
   }
+
+  .node .content {
+    line-height: 40px !important;
+  }
 }
 
 @media screen and (max-width: 959px) {
