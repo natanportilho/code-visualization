@@ -3303,3 +3303,12 @@ input, select, textarea {
 				}
 
 	}
+
+	label.pivot-element {
+		margin-left: 30px;
+	  }
+	
+	  label.less-element {
+		margin-left: 20px;
+	  } 
+	  

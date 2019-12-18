@@ -22,19 +22,28 @@
       </div>
     </div>
 
+    <!-- <br>
+    <br>
+    <br>
+    <br> -->
+    <div class="quick-sort-helper-elements">
+      <div class="up-content">
+        <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name pivot-element">Pivot:</label>
+        <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node pivot-element"></div>
+     
+        <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name less-element">Less:</label>
+        <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node less-element"></div>
+    
+      </div>
 
-    <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name pivot-element">Pivot:</label>
-    <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node pivot-element"></div>
- 
-    <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name less-element">Less:</label>
-    <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node less-element"></div>
-
-    <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name greater-element">Greater:</label>
-    <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node greater-element"></div>
-
-    <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name final-position">Sorted:</label>
-    <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node final-position"></div>
-
+      <div class="down-content">
+        <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name greater-element">Greater:</label>
+        <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node greater-element"></div>
+    
+        <label [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" class="label-name final-position">Sorted:</label>
+        <div [style.visibility]="isPivotVisible ? 'visible' : 'hidden'" id="pivot" class="node final-position"></div>
+      </div>
+    </div>
 </div>
 <br>
 
