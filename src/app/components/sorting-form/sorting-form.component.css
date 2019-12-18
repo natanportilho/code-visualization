@@ -145,3 +145,17 @@ p {
 .left-section {
   float: left;
 }
+
+@media screen and (max-width: 1200px) {
+  .quick-sort-helper-elements {
+    clear: both;
+     }
+}
+
+@media screen and (max-width: 680px) {
+  .right-section {
+    background-color: white;
+    float: left;
+    clear: both;
+    }
+}
