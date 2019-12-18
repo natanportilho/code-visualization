@@ -6,6 +6,8 @@ export class Constant {
     static LESS_CLASS = 'less-element';
     static GREATER_CLASS = 'greater-element';
     static SORTED_CLASS = 'final-position';
+    static SELECTED = 'selected';
+    static SELECTED_COMPARISON = 'selected-for-comparison';
     constructor() {
 
     }

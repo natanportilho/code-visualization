@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { QuickSortState } from './QuickSortState';
 import { QuickSortNode } from './QuickSortNode';
 import { SelectorService } from '../../selector/selector.service';
-import { Constant } from '../quicksort/Constant';
+import { Constant } from '../Constant';
 
 // 2,6,5,3,8,7,1,0
 @Injectable()
